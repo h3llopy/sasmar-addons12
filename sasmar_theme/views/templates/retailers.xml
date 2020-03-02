@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- FAQ page -->
+<template id="retailers" name="Retailers">
+ <t t-call="website.layout">
+ 		 <div class="page-wrapper">
+
+			<div class="breadcrumbs">
+				<ul class="items">
+						        <li class="home">
+						                <a href="/" title="Go to Home Page">
+						        Home                </a>
+						            </li>
+						            <span style="font-size: 10px;"> &gt;</span>
+						        <li class="blog">
+						                <strong>Retailers</strong>
+						            </li>
+						</ul>
+			</div>
+<main id="maincontent" class="page-main">
+<div class="columns"><div class="column main">
+<br/>
+<div class="entry-content">
+    <div class="row">
+        <div class="row-wrapper container">
+
+                <div class="col-md-12 col-sm-12">
+
+                    <h3 class=""><strong> Retailers</strong></h3>
+                    <p><img class="" title="Retailers" src="/sasmar_theme/static/src/img/retailers-smcat.jpg" alt="Retailers" width="680" height="248"/></p>
+                    <p><span style="font-size: medium;">Conceive Plus   and SASMAR	 personal lubricants are also available from leading retailers globally including the following retailers : </span></p>
+<p><strong> <a title="Were to buy SASMAR in United States Of America, South and Latin America" href="http://hk.sasmar.com/retailers/" target="_blank">USA / AMERICAS</a> - <a title="Where to buy Sasmar lubes in Australia and New Zealand" href="http://au.sasmar.com/retailers/">AUSTRALIA  / NZ</a>  -  <a title="Where to buy SASMAR lubricant in Europe" href="http://eu.sasmar.com/retailers-stockists-where-to-buy/" target="_blank">EUROPE</a>  -  <strong><a title="where to buy sasmar in Saudi Arabia UAE Egypt Kuwait" href="index.html" target="_blank">MIDDLE EAST</a> -</strong> <a title="Where to buy SASMAR sex lube in Asia" href="http://hk.sasmar.com/retailers/">ASIA</a> - <a title="Where to buy SASMAR products in India" href="http://hk.sasmar.com/retailers/">INDIA</a> - <a title="Where to buy SASMAR products in Russia" href="http://eu.sasmar.com/retailers-stockists-where-to-buy/" target="_blank">RUSSIA</a> - <a title="Where to buy in South Africa" href="index.html" target="_blank">SOUTH AFRICA</a></strong></p>
+<p><span style="color: #808080;"><strong><span style="font-size: medium;">UNITED STATES OF AMERICA <span style="font-size: xx-small;">........................................................................................................................................................................................</span></span></strong></span></p>
+<p><span style="font-size: small;"><em><a href="http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dhpc&amp;field-keywords=sasmar" target="_blank"><img class="__mce_add_custom__" title="imgres.jpg" src="/sasmar_theme/static/src/img/imgres.jpg" alt="imgres.jpg" width="200" height="47" /></a>     <a href="http://www.luckyvitamin.com/sb-personal-lubricant#q=page/1/Brand/Sasmar%7CConceive+Plus" target="_blank"><img class="__mce_add_custom__" src="../../www.luckyvitamin.com/images/logo.html" alt="" width="200" height="99" /></a>       <a href="http://www.faddistinc.com/index.php/catalogsearch/result/?cat=0&amp;q=sasmar" target="_blank"><img class="__mce_add_custom__" src="/sasmar_theme/static/src/img/pureformulas.png" alt="" width="200" height="48" />  <img class="__mce_add_custom__" title="logo.png" src="/sasmar_theme/static/src/img/logo879.png" alt="logo.png" width="180" height="56" /></a></em></span></p>
+<p><span style="font-size: small;"><em>   <a href="http://pregmate.com/search?type=product&amp;q=sasmar" target="_blank"><img class="__mce_add_custom__" src="../../cdn.shopify.com/s/files/1/0552/4809/t/4/assets/logo_home9be6.png?1261801519504465466" alt="" width="200" height="36" /></a></em></span>    <em style="font-size: small;"><a href="http://www.cheaplubes.com/sasmar-personal-lubricant-brand.aspx" target="_blank"><img class="__mce_add_custom__" src="../../www.cheaplubes.com/themes/solidcactus-3-1-1-1/images/sitedesign/logo.png" alt="" width="200" height="67" /></a>     <a href="http://www.evitamins.com/sasmar" target="_blank"><img class="__mce_add_custom__" title="evitamins-logo.png" src="/sasmar_theme/static/src/img/evitamins-logo.png?" alt="evitamins-logo.png" width="200" height="39" /></a>     <a href="http://selfservetoys.com/http%3A-selfservetoyscom-safer-sex-and-supplies-lubricants-water-based-lubricants-conceive-plus-30ml/dp/2978" target="_blank"><img class="__mce_add_custom__" title="banner.png" src="/sasmar_theme/static/src/img/banner6.png" alt="banner.png" width="188" height="51" /></a> </em></p>
+<p> </p>
+<p><span style="font-size: small; color: #888888;"><strong><span style="font-size: medium;">BRAZIL<span style="font-size: xx-small;"> </span></span><span style="font-size: xx-small;">....................................................................................................................................................................................................<strong><span>..<strong><span><strong>.</strong></span></strong><strong><span><strong>.</strong></span></strong><strong><span><strong>.</strong></span></strong></span></strong></span></strong></span></p>
+<p><span style="font-size: small; color: #888888;"><strong><span style="font-size: xx-small;"><strong><strong><img class="__mce_add_custom__" title="conceiveplus-logo.jpg" src="/sasmar_theme/static/src/img/conceiveplus-logo.jpg" alt="conceiveplus-logo.jpg" width="94" height="35" /></strong></strong></span></strong></span></p>
+<p>  <a href="http://www.babytobe.com.br/buscar?q=conceive+plus" target="_blank"><img class="__mce_add_custom__" title="baby-to-be-conceive-plus.jpg" src="/sasmar_theme/static/src/img/baby-to-be-conceive-plus.jpg" alt="baby-to-be-conceive-plus.jpg" width="200" height="146" /></a>          <a href="https://www.fertiloja.com.br/?s=conceive+plus&amp;post_type=product&amp;submit=Buscar" target="_blank"><img class="__mce_add_custom__" title="b245db850a.png" src="/sasmar_theme/static/src/img/babystart-brazil.png" alt="b245db850a.png" width="200" height="146" /><img class="__mce_add_custom__" src="/sasmar_theme/static/src/img/fertiloja-logo.png" alt="" width="250" height="74" /></a></p>
+<p><span style="color: #888888;"><strong><span style="font-size: medium;">CHILE</span> <span style="font-size: xx-small;">....................................................................................................................................................................................................<strong>..<strong>.</strong><strong>.</strong><strong>.</strong></strong></span></strong></span></p>
+<p> </p>
+<p><a href="http://www.nutranatural.cl/search?controller=search&amp;orderby=position&amp;orderway=desc&amp;search_query=sasmar&amp;submit_search=" target="_blank"><img class="__mce_add_custom__" src="../../www.nutranatural.cl/img/new-store-logo-1439854535.jpg" alt="" width="200" height="42" /></a></p>
+<p><span style="font-size: x-small;"> </span></p>
+<p><span style="color: #888888;"><strong><span style="font-size: medium;">EGYPT<span style="font-size: xx-small;"> </span></span><span style="font-size: xx-small;">........................................................................................................................................................................................................</span></strong></span></p>
+<p><img class="__mce_add_custom__" src="http://" alt="" /></p>
+<p><img class="__mce_add_custom__" src="/sasmar_theme/static/src/img/el-ezaby.jpg" alt="" width="200" height="41" /></p>
+<p> </p>
+<p><strong><span style="color: #888888;"><span style="font-size: medium;">KUWAIT<span style="font-size: xx-small;"> </span></span><span style="font-size: xx-small;">....................................................................................................................................................................................................</span></span></strong></p>
+<p> <a href="http://www.intl.boots.com/storelocator/Results.aspx?country_id=5&amp;s=" target="_blank"><img class="__mce_add_custom__" title="uae-boots.png" src="/sasmar_theme/static/src/img/uae-boots.png" alt="uae-boots.png" width="200" height="111" /></a></p>
+<p><span style="color: #888888; font-size: small;"><strong>Available in Kuwait at Boots pharmacies (28 outlets), </strong></span><span style="color: #888888; font-size: small;"><strong>Sultan Center (14 centers) </strong></span><span style="color: #888888; font-size: small;"><strong>and Pharmazone (14 outlets)</strong></span></p>
+<p> </p>
+<p><span style="color: #808080;"><strong><span style="font-size: medium;">SAUD</span></strong></span><strong style="color: #808080;"><span style="font-size: medium;">I ARABIA <span style="font-size: xx-small;">..................................................................................................................................................................................................</span></span></strong></p>
+<p><a href="http://www.unitedpharmacies.com/" target="_blank"><span style="color: #808080;"><strong><span style="font-size: medium;"><strong><strong><img class="__mce_add_custom__" title="ksa-pharma.png" src="/sasmar_theme/static/src/img/ksa-pharma.png" alt="ksa-pharma.png" width="205" height="67" />     <img class="__mce_add_custom__" src="../../www.al-dawaa.com/images/stories/logo.png" alt="" width="200" height="85" />     <img class="__mce_add_custom__" src="../../www.darelkhebrah.com/images/Nahdinewlogo.jpg" alt="" width="200" height="134" />                                                           <img class="__mce_add_custom__" src="http://it-helpdesk.tadawigroup.com:8080/" alt="" width="270" height="84" /></strong></strong></span></strong></span></a></p>
+<p> </p>
+<p><span style="color: #808080;"><strong><span style="font-size: medium;">SOUTH AFRICA</span>  .<span style="font-size: xx-small;">...............................................................................................................................................................................................</span></strong></span></p>
+<p><span><strong><strong><img class="__mce_add_custom__" title="conceiveplus-logo.jpg" src="/sasmar_theme/static/src/img/conceiveplus-logo.jpg" alt="conceiveplus-logo.jpg" width="94" height="35" /></strong></strong></span></p>
+<p><span><strong><a href="http://www.dischem.co.za/storefinder.asp" target="_blank"><img class="__mce_add_custom__" title="za-dischem.png" src="/sasmar_theme/static/src/img/za-discheme.png" alt="za-dischem.png" width="200" height="87" /></a> </strong></span></p>
+<p> </p>
+<p><span style="color: #808080;"><strong><span style="font-size: medium;">UNITED ARAB EMIRATES</span> <span style="font-size: xx-small;">.......................................................................................................................................................................<strong><span>....</span></strong></span></strong></span></p>
+<p><span style="color: #808080;"><strong> </strong></span><a href="http://www.binsinapharmacy.com/" target="_blank"><img class="__mce_add_custom__" title="uae-bin-sinah.png" src="/sasmar_theme/static/src/img/uae-bin-sina-pharmacies.jpg" alt="uae-bin-sinah.png" width="260" height="74" /></a>     <a href="http://www.planetme.ae/index.html" target="_blank"><img class="__mce_add_custom__" title="uae-planet.png" src="/sasmar_theme/static/src/img/uae-planeta.png" alt="uae-planet.png" width="200" height="65" /></a><a href="https://www.facebook.com/lifepharmacyme" target="_blank"><img class="__mce_add_custom__" src="/sasmar_theme/static/src/img/lifehealthcaregroup.png" alt="" width="130" height="142" /></a><a href="http://www.intl.boots.com/storelocator/Results.aspx?country_id=5&amp;s=" target="_blank"><img class="__mce_add_custom__" title="uae-boots.png" src="/sasmar_theme/static/src/img/uae-boots.png" alt="uae-boots.png" width="200" height="111" /></a>     </p>
+<p> <a href="http://www.marinapharmacy.com/branches.php" target="_blank"><img class="__mce_add_custom__" src="../../lsae2.iypcdn.com/static/modules/uploads/logos/marina-pharmacy-uae-logo58ae.jpg?561" alt="" width="200" height="154" /></a>        <a href="http://asterpharmacy.com/" target="_blank"><img class="__mce_add_custom__" title="aster.jpg" src="/sasmar_theme/static/src/img/asterd.jpg" alt="aster.jpg" width="180" height="70" /></a>     <a href="http://www.super-care.ae/supercare-pharmacy-locations.php" target="_blank"><img class="__mce_add_custom__" src="../../www.super-care.ae/images/Supercare-Pharmacy-logo.jpg" alt="" width="200" height="73" /></a></p>
+<p> </p>
+<p>                                                              </p>
+<p><em><span style="font-size: x-small;"> </span></em></p>
+<p><strong> <a title="Were to buy SASMAR in United States Of America, South and Latin America" href="http://hk.sasmar.com/retailers/" target="_blank">USA / AMERICAS</a> - <a title="Where to buy Sasmar lubes in Australia and New Zealand" href="http://au.sasmar.com/retailers/">AUSTRALIA  / NZ</a>  -  <a title="Where to buy SASMAR lubricant in Europe" href="http://eu.sasmar.com/retailers-stockists-where-to-buy/" target="_blank">EUROPE</a>  -  <strong><a title="where to buy sasmar in Saudi Arabia UAE Egypt Kuwait" href="index.html" target="_blank">MIDDLE EAST</a> -</strong> <a title="Where to buy SASMAR sex lube in Asia" href="http://hk.sasmar.com/retailers/">ASIA</a> - <a title="Where to buy SASMAR products in India" href="http://hk.sasmar.com/retailers/">INDIA</a> - <a title="Where to buy SASMAR products in Russia" href="http://eu.sasmar.com/retailers-stockists-where-to-buy/" target="_blank">RUSSIA</a> - <a title="Where to buy in South Africa" href="index.html" target="_blank">SOUTH AFRICA</a></strong></p>
+<p> </p>
+<p><span style="font-size: medium;"><strong><em>FOR OTHER COUNTRIES - <a href="http://sasmar.com/">CLICK HERE</a></em></strong></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-wrapper container">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr class="tall"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div></div></main>
+
+		 </div>
+ 		</t>
+	</template>
+
+</data>
+</odoo>

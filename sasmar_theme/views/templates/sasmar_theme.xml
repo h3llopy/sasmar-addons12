@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+	<template id="sasmar_categories_recursive" name="Sasmar Category list">
+		<li class="dropdown dropdown-submenu ayaz">
+			<!-- <span t-field="c.name"/> -->
+			<a t-attf-href="/shop/category/#{slug(c)}" t-attf-class="dropdown-toggle nav-link">
+				<span t-field="c.name"/>
+			</a>
+			<ul t-if="c.child_id" class="dropdown-menu ayaz2">
+				<t t-foreach="c.child_id" t-as="c">
+					<t t-call="sasmar_theme.sasmar_categories_recursive" />
+				</t>
+			</ul>
+		</li>
+	</template>
+
+<!-- Customize Header -->
+<template id="homepage_top_header" inherit_id="website.layout">
+	<xpath expr="//header//nav[hasclass('navbar-expand-md')]" position="before">
+		<div class="panel wrapper hdr sasmar-wrapper">
+			<div class="panel header sasmar-panelheader pull-right" style="margin-right: 8%;">
+				<div id="currency" >
+					<div class="dropdown btn-group">
+						<a href="#" class="dropdown-toggle sasmar-toggle" data-toggle="dropdown">
+							<img src="/sasmar_theme/static/src/img/flags/us.gif" />
+							<span>USD-US Dollar</span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li>
+								<a href="#">
+									<img src="/sasmar_theme/static/src/img/flags/us.gif" />
+									<span>EUR-Euro</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				<span>
+				<span class="split"></span>
+					<a class="sasmar-sample" href="/sample">
+						<span class="menu-text"> Free Sample</span>
+					</a>
+				</span>
+			</div>
+		</div>
+
+		<div class="panel wrapper hdr sasmar-wrapper2">
+			<div class="panel header sasmar-panelheader2">
+				<div data-block="minicart" class="minicart-wrapper header-account">
+					<div class="custom-block">
+						<span t-if="website.user_id != user_id">
+						<t t-set="website_sale_order" t-value="website.sale_get_order()" />
+						<a href="/my/home" class="sasmar-account">
+							<i class="fa fa-user"></i>
+							<span class="menu-text"> Account</span>
+						</a>
+						<span class="split"></span>
+						</span>
+						<span
+							t-if="website_sale_order and website_sale_order.website_order_line">
+							<a href="/shop/cart" class="sasmar-account">
+								<i class="fa fa-check-square-o"></i>
+								<span class="menu-text"> Checkout</span>
+							</a>
+						</span>
+
+						<span t-if="website.user_id == user_id">
+							<a href="/web/login" class="sasmar-account">
+								<i class="fa fa-key"></i>
+								<span class="menu-text"> Login</span>
+							</a>
+							<span class="split"></span>
+							<a href="/web/signup" class="sasmar-account">
+								<i class="fa fa-sign-in"></i>
+								<span class="menu-text"> Signup</span>
+							</a>
+						</span>
+						<span t-if="website.user_id != user_id">
+							<a href="/web/session/logout?redirect=/" class="sasmar-account">
+								<i class="fa fa-unlock"></i>
+								<span class="menu-text"> Logout</span>
+							</a>
+						</span>
+					</div>
+					<div class="cart-toggle sasmar-cart">&#160;
+						<a class="sasmar-minicart" href="/shop/cart">
+							<div class="icon">
+								<i class="fa fa-shopping-cart"></i>
+							</div>
+						</a>
+						<t t-set="website_sale_order" t-value="website.sale_get_order()" />
+						<a class="sasmar-minicart" href="/shop/cart">
+							<div class="mini-cart">
+								<span class="count-item">
+									<span class="txt-item my_cart_quantity"
+										t-esc="website_sale_order and website_sale_order.cart_quantity or 0"></span>
+								</span>
+							</div>
+						</a>
+						
+						<div class="top-cart-content">
+							<div
+								t-if="not website_sale_order or not website_sale_order.website_order_line"
+								class="">
+								Your cart is empty!
+							</div>
+							<ol class="mini-products-list"
+								t-if="website_sale_order and website_sale_order.website_order_line">
+								<t t-foreach="website_sale_order.website_order_line" t-as="line">
+									<li class="item last odd"
+										t-if="line.product_id and line.product_id.product_tmpl_id">
+										<a class="product-image sasmar-minicart" title=""
+											t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
+											<span t-field="line.product_id.image_small"
+												t-field-options='{"widget": "image", "class": "img-rounded"}' />
+										</a>
+										<div class="product-details">
+											<a t-attf-href="#"
+												class="btn-remove sasmar-minicart js_add_cart_json_new" title="Remove Item"
+												data-no-instant="">
+												<i class="fa fa-trash-o"></i>
+											</a>
+											<a class="btn-edit sasmar-minicart" title="Edit item"
+												t-attf-href="/shop/cart">
+												<i class="fa fa-pencil"></i>
+											</a>
+											<p class="product-name">
+												<a class="sasmar-minicart"
+													t-attf-href="/shop/product/#{ slug(line.product_id.product_tmpl_id) }">
+													<span
+														t-esc="line.product_id.with_context(display_default_code=False).display_name" />
+												</a>
+											</p>
+											<strong>
+												<input type="label" class="js_quantity sasmar-quantity"
+													t-att-data-line-id="line.id" t-att-data-product-id="line.product_id.id"
+													t-att-value="int(line.product_uom_qty)"
+													onchange="alert('hi');" readonly="True" />
+											</strong>
+											x
+											<span
+												t-field-options='{
+												 "widget": "monetary",
+												 "display_currency": "website.currency_id"
+											 }'
+												t-field="line.price_unit" class="sasmar-priceunit" />
+										</div>
+									</li>
+								</t>
+							</ol>
+							<div class="top-subtotal"
+								t-if="website_sale_order and website_sale_order.amount_total and user_id.partner_id.property_product_pricelist.currency_id">
+								Subtotal:
+								<span class="price sasmar-priceunit" t-field="website_sale_order.amount_total"
+									t-field-options='{
+								 "widget": "monetary",
+								 "display_currency": "website.currency_id"
+									}' />
+							</div>
+							<div class="actions">
+								<t t-set="website_sale_order" t-value="website.sale_get_order()" />
+								<a class="sasmar-minicart" t-attf-href="/shop/checkout"
+									t-if="website_sale_order and website_sale_order.website_order_line">
+									<button class="btn btn-primary" title="Checkout"
+										type="button">
+										<span>
+											<span>Checkout</span>
+										</span>
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</xpath>
+	<xpath expr="//header//a[hasclass('navbar-brand')]" position="replace">
+		<a href="/" class="navbar-brand logo" style="margin: 0% 10% !important;"> 
+			<img class="img img-responsive logo sasmar-logo" href="/" src="/sasmar_theme/static/src/img/sasmar-lubricant.png" alt="Sasmar Theme" title="Sasmar Theme"/>
+		</a>
+	</xpath>
+	<xpath expr="//ul[@id='top_menu']" position="replace">
+		<ul id="top_menu" class="nav navbar-nav ml-auto text-right sasmar-navbarnav">
+			<li class="nav-item  dropdown">
+				<a href="/about-us" class="nav-link dropdown-toggle" data-toggle="dropdown">About Us</a>
+				<ul class="dropdown-menu ayaz" role="menu">
+					<li><a  class="dropdown-item" role="menuitem" 
+							href="/our-mission">Our Mission</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+						href="/our-responsibility">Resposibility</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+						href="/page/contactus">Contact</a></li>
+				</ul>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a href="/our-brands" class="nav-link dropdown-toggle" data-toggle="dropdown">Brands</a>
+				<ul class="dropdown-menu ayaz" role="menu">
+					<li><a class="dropdown-item" role="menuitem" 
+						href="/conceive-plus">Conceive Plus®</a></li>
+					<li><a class="dropdown-item"  role="menuitem" 
+						href="/sasmar-brand-personal-lubricant">Sasmar®</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+					 href="/erexia">EREXIA®</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+					 href="/purfeet">Purfeet™</a></li>
+				</ul>
+			</li>
+			
+			<li class="nav-item dropdown">
+				<a href="/careers" class="nav-link dropdown-toggle" data-toggle="dropdown">Careers </a>
+				<ul class="dropdown-menu ayaz" role="menu">
+					<li><a  class="dropdown-item" role="menuitem" 
+					 href="/working-at-sasmar">Working at Sasmar</a></li>
+					<li><a class="dropdown-item" role="menuitem"  href="/jobs">Job Opportunities</a></li>
+				</ul>
+			</li>
+			
+			<li class="nav-item"><a role="menuitem" class="nav-link " href="/blog/1">Media</a></li>
+			  
+			<li class="dropdown">
+				<a href="/innovation" class="nav-link dropdown-toggle" data-toggle="dropdown">Innovation </a>
+				<ul class="dropdown-menu ayaz" role="menu">
+					<li><a class="dropdown-item" role="menuitem" 
+					 href="/research-development">Research</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+					 href="/partnerships">Partnerships</a></li>
+					<li><a class="dropdown-item" role="menuitem" 
+					 href="/submit-an-idea">Submit an Idea</a></li>
+				</ul>
+			</li>
+			  
+			<li class="dropdown">
+				<a href="/shop" class="nav-link dropdown-toggle" data-toggle="dropdown"> Shop </a>
+				<ul class="dropdown-menu ayaz">
+					<t t-foreach="website.get_product_category()" t-as="c">
+						<t t-call="sasmar_theme.sasmar_categories_recursive" />
+					</t>
+				</ul>
+			</li>
+			  
+			<!-- <li class="nav-item"><a role="menuitem" class="nav-link " href="/sample">Free Sample</a></li> 	    -->     		
+		</ul>
+		<ul class="nav navbar-nav navbar-right sasmar-navbarnavright">
+			<li class="header-search sasmar-search">
+				<form action='/shop' method="get" style="display:flex;    float: right;">
+					<t t-set="search_text" t-value="search"/>
+					<input class="form-control" type="text" placeholder="Search" t-att-value="search" name="search" id="searchExpand"/>
+					<button class="btn btn-default sasmar-searchbtn"><i class="fa fa-search"></i></button>
+				</form>
+			</li>
+		</ul>
+	</xpath>
+
+	
+</template>
+
+
+<!-- Hide Header Menu -->
+<!-- <template id="remove_header" inherit_id="website.layout">
+	<xpath expr="//div[@id='wrapwrap']/header/nav[@class='navbar navbar-expand-md navbar-light bg-light']" position="attributes">
+		<attribute name='style'>display:none</attribute>
+	</xpath>
+</template> -->
+
+
+<!-- Homepage Body Content -->
+<!--<template id="custom_layout_website" inherit_id="website.homepage">-->
+<template id="sasmar_home" inherit_id="website.homepage">
+	<xpath expr="//div[@id='wrap']" position="replace">
+	 <div id="wrap" class="oe_structure">
+
+	<!-- Loader -->
+	<div class="se-pre-con"></div>
+	<!-- Ends -->
+
+
+		<!--Video Section-->
+		<section class="content-section video-section" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); margin-bottom: 10px;">
+		  <div class="pattern-overlay">
+		  <a id="bgndVideo" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=fdJc1_IBKJA',containment:'.video-section', quality:'large', autoPlay:true, mute:true, opacity:1}">bg</a>
+			<div class="container">
+			  <div class="row">
+				<div class="col-lg-12">
+				<h1>Welcome to SASMAR</h1>
+				<h3>We make the best personal lubricants in the world since 2005...</h3>
+			   </div>
+			  </div>
+			</div>
+		  </div>
+		</section>
+		<!--Video Section Ends Here-->
+		
+		<section class="as_aboutus2" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); color: #fff; background: #3f81b1; margin: -10px; ">
+		  <div class="container" style="padding: 10px;">
+			<div class="row">
+			  <div class="col-md-12">
+				<div class="asas-text">
+				  <h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">About Us</span></h2>
+				  <p style="font-size: 24px;
+	margin-bottom: 50px;
+	font-weight: 300;">At SASMAR®, we make the best personal lubricants in the world! Helping couples in more than 60 countries internationally connect with each other better and with our Conceive Plus brand - we are doing a great job increasing the fertility rate too. You can find our products in supermarkets, clinics, hospitals, pharmacies and drugstores in more than 60 countries. SASMAR® personal lubricants really help to make using condom a lot more pleasurable and that is why we are also the major supplier of personal lubricant sachets to non-government organizations - helping to reduce HIV and unwanted pregnancies in developing and third world countries</p>
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="/about-us" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+				</div>
+			  </div>
+			 
+			</div>
+		  </div>
+		</section>
+	
+
+
+	 <section class="as_aboutus2" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); color: #fff; background-image: url('/sasmar_theme/static/src/img/About-us.jpg');">
+		  <div class="container">
+			<div class="row" style="margin-bottom: 10px;">
+			  <div class="col-md-8">
+				<div class="asas-text">
+				  <h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">Innovation</span></h2>
+				  <p style="font-size: 24px;
+	margin-bottom: 50px;
+	font-weight: 300;">At SASMAR®, we make the best personal lubricants in the world! Helping couples in more than 60 countries internationally connect with each other better and with our Conceive Plus brand - we are doing a great job increasing the fertility rate too. You can find our products in supermarkets, clinics, hospitals, pharmacies and drugstores in more than 60 countries. SASMAR® personal lubricants really help to make using condom a lot more pleasurable and that is why we are also the major supplier of personal lubricant sachets to non-government organizations - helping to reduce HIV and unwanted pregnancies in developing and third world countries</p>
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="/innovation" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+				</div>
+			  </div>
+			 
+			 <div class="col-md-4">
+				  <div class="asas-img">
+					<img src="/sasmar_theme/static/src/img/cherry-21.jpg" alt="" style="width: 100%; margin-top: 50px;"/>
+				  </div>
+
+			  </div>
+			  
+			</div>
+		  </div>
+		</section>	
+
+
+
+		<section class="as_aboutus2" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); color: #fff;margin: -10px; background-image: url('/sasmar_theme/static/src/img/parallax_bg.jpg');">
+		  <div class="container">
+			<div class="row" style="margin-bottom: 10px;">
+			  <div class="col-md-12">
+				<div class="asas-text">
+				  <h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">CAREERS</span></h2>
+				  <p style="font-size: 24px;
+	margin-bottom: 50px;
+	font-weight: 300;">At SASMAR®, Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+	 <p style="font-size: 20px;
+	margin-bottom: 50px;
+	font-weight: 300;">If You Think You're one of those, Send your resume at <strong>career@sasmar.com</strong>.</p>
+	 
+	 <p style="font-size: 98px;
+	line-height: 1;
+	font-family: 'KiteDisplay','Helvetica','Arial',sans-serif;">Want to have a Career with us ?</p>
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="/careers" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+				</div>
+			  </div>
+			 
+			</div>
+		  </div>
+		</section>
+
+
+		<section class="as_aboutus2" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); color: #fff; background: #3f81b1;">
+		  <div class="container">
+			<div class="row" style="margin-bottom: 10px;">
+			  <div class="col-md-12">
+				<div class="asas-text">
+				  <h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">Responsibility</span></h2>
+	
+		 
+	 <p style="font-size: 98px;
+	line-height: 1;
+	font-family: 'KiteDisplay','Helvetica','Arial',sans-serif;">We care for you and your Family. </p>
+	
+	<p style="font-size: 24px;
+	margin-bottom: 50px;
+	font-weight: 300;">Since 2005 SASMAR has manufactured personal care products of the highest quality, meeting the family planning needs of consumers internationally. Our products carry the CE mark of confirmity with the European Medical Devices Directive 93/42EEC. Sasmar Pharmaceuticals is ISO 9001:2008 - ISO 13485:2012 certified and FDA registered/inspected.</p>
+	
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="/our-responsibility" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+				</div>
+			  </div>
+			 
+			</div>
+		  </div>
+		</section>		
+
+
+	 <section class="as_aboutus2" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); color: #fff;margin: -10px;background-image: url('/sasmar_theme/static/src/img/1111.jpg');">
+		  <div class="container" style="padding: 10px;">
+			<div class="row" style="margin-bottom: 10px;">
+			  <div class="col-md-12">
+				<div class="asas-text">
+				  <h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">Research</span></h2>
+				  <p style="font-size: 24px;
+	margin-bottom: 50px;
+	font-weight: 300;">At SASMAR®, we make the best personal lubricants in the world! Helping couples in more than 60 countries internationally connect with each other better and with our Conceive Plus brand - we are doing a great job increasing the fertility rate too. You can find our products in supermarkets, clinics, hospitals, pharmacies and drugstores in more than 60 countries. SASMAR® personal lubricants really help to make using condom a lot more pleasurable and that is why we are also the major supplier of personal lubricant sachets to non-government organizations - helping to reduce HIV and unwanted pregnancies in developing and third world countries</p>
+	 <p style="font-size: 98px;
+	line-height: 1;
+	font-family: 'KiteDisplay','Helvetica','Arial',sans-serif;">Research, Safety &amp; Performance</p>
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="/research-development" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+				</div>
+			  </div>
+			 
+			  
+			</div>
+		  </div>
+		</section>	
+		
+						
+
+	<section class="as-our-team" style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); background: linear-gradient(to bottom,#674287 0,#646aa4 100%); color: #fff;">
+  <div class="container" style="padding: 10px;">
+	<div class="seaction-head"><h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">Our Team</span></h2></div>
+	<div class="row" style="margin-bottom: 10px;">
+	  <div class="col-md-3 col-sm-6">
+		<div class="asot-inner">
+		  <div class="team-img">
+			<img src="/sasmar_theme/static/src/img/team1.png" alt="" style="height:300px !important;"/>
+		  </div>
+		  <div class="team-info">
+			<h2>Andrew Donald</h2>
+			<span style="font-size: 18px; font-weight: 300;">Founder &amp; CEO</span>
+			<p style="font-size: 16px; font-weight: 300;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+				  <div class="btn-col">
+					<a class="btn btn-primary" href="#" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="col-md-3 col-sm-6">
+		<div class="asot-inner">
+		  <div class="team-img">
+			<img src="/sasmar_theme/static/src/img/team2.png" alt="" style="height:300px !important;"/>
+		  </div>
+		  <div class="team-info">
+			<h2>William Turner</h2>
+			<span style="font-size: 18px; font-weight: 300;">Team Leador</span>
+			<p style="font-size: 16px; font-weight: 300;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+			<div class="btn-col">
+					<a class="btn btn-primary" href="#" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="col-md-3 col-sm-6">
+		<div class="asot-inner">
+		  <div class="team-img">
+			<img src="/sasmar_theme/static/src/img/team3.png" alt="" style="height:300px !important;"/>
+		  </div>
+		  <div class="team-info">
+			<h2>Ariel Smith</h2>
+			<span style="font-size: 18px; font-weight: 300;">HR Manager</span>
+			<p style="font-size: 16px; font-weight: 300;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+			<div class="btn-col">
+					<a class="btn btn-primary" href="#" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="col-md-3 col-sm-6">
+		<div class="asot-inner">
+		  <div class="team-img">
+			<img src="/sasmar_theme/static/src/img/team4.png" alt="" style="height:300px !important;"/>
+		  </div>
+		  <div class="team-info">
+			<h2>Elizabeth</h2>
+			<span style="font-size: 18px; font-weight: 300;">Co-Founder</span>
+			<p style="font-size: 16px; font-weight: 300;">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+			<div class="btn-col">
+					<a class="btn btn-primary" href="#" style="color: #FFFFFF; border-color: #FFFFFF;">Read More <i class="fa fa-chevron-right"/></a>
+				  </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section style="box-shadow: 0 3px 6px rgba(0,0,0,.04),0 3px 6px rgba(0,0,0,.23); background: #3f81b1; color: #fff;">
+<div class="container" style="padding: 10px;">
+<h2 class="as-sub-head" style="text-align: center;"><span style="font-size: 24px;
+	border: 1px solid #FFFFFF;
+	padding: 10px 54px 10px 50px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #fff;">Our Brands</span></h2>
+
+		<p style="font-size: 24px;
+			margin-bottom: 50px;
+			font-weight: 300;">Helping trying to conceive couples on their path to pregnancy naturally, Conceive Plus® fertility lubricant is formulated to be safe for sperm survival and migration.</p>
+			 
+			 <p style="font-size: 98px;
+			line-height: 1;
+			font-family: 'KiteDisplay','Helvetica','Arial',sans-serif;">Brands You can Trust</p>
+	<br/>
+		<div class="well-none">
+			<div id="myCarousel" class="carousel slide">
+
+				<!-- Carousel items -->
+				<div class="carousel-inner">
+
+					<div class="carousel-item active">
+						<div class="row">
+							<div class="col-sm-3 col-xs-6"><a href="#x col-xs-6" class="thumbnail"><img src="/sasmar_theme/static/src/img/aster.jpg" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/el-ezaby.jpg" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/evitamins-logo.png" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/fertiloja-logo.png" alt="Image" class="img-responsive"/></a>
+							</div>
+						</div>
+						<!--/row-->
+					</div>
+					<!--/item-->
+					<div class="carousel-item">
+						<div class="row">
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/fertiloja-logo.png" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/logo879.png" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/pureformulas.png" alt="Image" class="img-responsive"/></a>
+							</div>
+							<div class="col-sm-3 col-xs-6"><a href="#x" class="thumbnail"><img src="/sasmar_theme/static/src/img/evitamins-logo.png" alt="Image" class="img-responsive"/></a>
+							</div>
+						</div>
+						<!--/row-->
+					</div>
+					<!--/item-->
+				</div>
+				<!--/carousel-inner-->
+				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left fa-4"></i></a>
+
+				<a class="carousel-control-next" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right fa-4"></i></a>
+			</div>
+			<!--/myCarousel-->
+		</div>
+		<!--/well-->
+</div>
+</section>
+
+
+
+
+	<!--
+		<section class="as-slider-std">
+		  <div class="container">
+
+			<div class="row">
+			  <div class="col-md-6 col-sm-6">
+				<div class="seaction-head"><h1>Why Choose us</h1></div>
+				<div class="desc">
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, exercitation ullamco.</p>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, exercitation ullamco.</p>
+				  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, exercitation ullamco.</p>
+				</div>
+			  </div>
+			  <div class="col-md-6 col-sm-6">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  <ol class="carousel-indicators">
+					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+
+				  <div class="carousel-inner" role="listbox">
+					<div class="item active">
+					  <img src="/sasmar_theme/static/src/img/team1.png" alt="" />
+					</div>
+					<div class="item">
+					  <img src="/sasmar_theme/static/src/img/team2.png" alt="" />
+					</div>
+					<div class="item">
+					  <img src="/sasmar_theme/static/src/img/team3.png" alt="" />
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+
+		  </div>
+		</section>-->
+
+
+	</div>
+</xpath>
+</template>
+
+
+
+<!-- footer section -->
+<template id="footer_custom_new" inherit_id="website.layout" name="Footer">
+	<xpath expr="//footer" position="replace">
+		<footer class="page-footer bg-light o_footer">
+		<div id="footer" class="footer oe_structure oe_structure_solo">
+	   	<div class="footer-top" style="background-color: #F6F6F6!important;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				<div class="custom-block">
+				<div class="homepage-bar">
+					<div class="row">
+						<div class="col-md-2 col-sm-2" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="/faq" title="Contact Us" style="background: #F6F6F6; color: #2C3232;"> Shop FAQ</a></h4></div>
+						</div>
+						<div class="col-md-2 col-sm-2" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="#" title="Newsletter" style="background: #F6F6F6; color: #2C3232;"> Newsletter</a></h4></div>
+						</div>
+						<div class="col-md-2 col-sm-2 sm-bd-0" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="/sitemap" title="Site map" style="background: #F6F6F6; color: #2C3232;"> Site map</a></h4></div>
+						</div>
+						<div class="col-md-2 col-sm-2" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="press-office" title="Press Office" style="background: #F6F6F6; color: #2C3232;"> Press Office</a></h4></div>
+						</div>
+						<div class="col-md-2 col-sm-2" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="/your-privacy" title="Privacy Policy" style="background: #F6F6F6; color: #2C3232;"> Privacy Policy</a></h4></div>
+						</div>
+						<div class="col-md-2 col-sm-2" style="height: 30px; text-align: center;">
+							<div class="text-area"><h4><a href="/our-terms" title="Legal Terms" style="background: #F6F6F6; color: #2C3232;"> Legal Terms</a></h4></div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Footer Middle Remove -->
+		<div class="footer-bottom">
+			<div class="container">
+				<strong class="logo">
+					<a href="/"><img src="/sasmar_theme/static/src/img/sasmar-lubricant.png" alt="" style="max-height: 35px !important;" /></a>
+				</strong>
+				<div class="custom-block">
+					<address>&#169; Copyright 2016 by SASMAR. All Rights Reserved.</address>
+				</div>                    
+				<ul class="social-icons" style="float:right;">
+					<li><a href="https://www.facebook.com/sasmarlubes" class="icon-social icon-social-theme icon-facebook" title="Facebook">Facebook</a></li><li><a href="http://twitter.com/Love_sasmar" class="icon-social icon-social-theme icon-twitter" title="Twitter">Twitter</a></li><li><a href="http://pinterest.com/love_sasmar" class="icon-social icon-social-theme icon-pinterest" title="Pinterest">Pinterest</a></li><li><a href="https://www.youtube.com/user/sasmarhealthcare" class="icon-social icon-social-theme icon-youtube" title="YouTube">YouTube</a></li><li><a href="https://plus.google.com/+Sasmarlubricants/posts" class="icon-social icon-social-theme icon-googleplus" title="GooglePlus">GooglePlus</a></li><li><a href="http://love-sasmar.tumblr.com/" class="icon-social icon-social-theme icon-tumblr" title="Tumblr">Tumblr</a></li>
+				</ul>
+				<div id="DigiCertClickID_dijMuA08" data-language="en">
+					<a href="https://www.digicert.com/ev-ssl-certification/">EV SSL</a>
+				</div>
+			</div>
+		</div>
+		</div>
+		<a href="javascript:void(0)" id="totop"><em class="porto-icon-up-open"></em></a>
+		</footer>
+	</xpath>
+</template>
+
+<!-- Remove Copy right footer -->
+<!-- <template id ="replace_free_website" inherit_id="website.layout">
+	<xpath expr="//footer" position="replace"/>
+</template> -->
+
+<!-- Most Popular Products -->
+<template id ="most_popular_products">
+						
+<h2 class="sidebar-title">Most Popular Products</h2>
+<div class="sidebar-filterproducts custom-block" style="padding-bottom: 20px;">
+	<div id="featured_product" class="owl-top-narrow">
+				<div class="products wrapper grid side-list products-grid">
+				<div class="filterproducts products list items product-items owl-carousel" style="display: block!important;">
+												<div class="item">
+							<t t-set="website_product" t-value="website.get_popular_products()"/>
+								<t t-foreach="website_product" t-as="product">
+
+								<div class="product product-item" style="border: 1px solid #ddd; height: auto !important;">
+				<div class="product-item-info" data-container="product-grid">
+										<a t-attf-href="/shop/product/#{slug(product)}" tabindex="-1">
+													<img class="product-image-photo default_image" t-att-src="website.image_url(product, 'image', None if product_image_big else '300x300')" alt="" style="height:200px; width:200px;"/>
+																														</a>
+					<div class="product details product-item-details">
+					
+					
+								   
+					   <div class="product-reviews-summary short">
+							<div class="rating-summary">
+								  <!--Price-->
+					<em class="p-price" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer" t-if="product.product_variant_ids">
+				   <span class="price-label"></span>
+				   <span class="price" id="product-price-3-widget-catalogsale-daadc6e791f3d16a73c4d30261ff95e9">
+				   <t t-if="(product.lst_price - product.price) &gt; 0.1">
+
+					 <del class="text-danger" style="white-space: nowrap;" t-field="product.lst_price" t-field-options='{
+							"widget": "monetary",
+							"from_currency": "product.company_id.currency_id",
+							"display_currency": "website.currency_id"
+							}'/>&amp;nbsp;
+				 </t>
+				 </span>
+
+				 <span class="price-label"></span>
+				<span class="price" id="product-price-3-widget-catalogsale-daadc6e791f3d16a73c4d30261ff95e9">
+				 <span class="regular-price" id="product-price-48-new">
+															  <span class="price" t-field="product.price" style="white-space: nowrap;"  t-field-options='{
+																   "widget": "monetary",
+																   "display_currency": "website.currency_id"
+															   }'>
+															  </span></span>
+															  <span itemprop="priceCurrency" style="display:none;" t-esc="user_id.partner_id.property_product_pricelist.currency_id.name"/>
+															  <span itemprop="price" style="display:none;" t-esc="product.price"/>
+				</span>
+
+					</em>
+					<!--End Price--> 
+							</div>
+						</div>       
+						
+						
+												<strong class="product name product-item-name">
+							<a class="product-item-link"
+							   t-attf-href="/shop/product/#{slug(product)}"> <span t-field="product.name"/></a>
+						</strong>
+				   
+																   
+																						 
+ 
+				   </div>
+				</div>
+				</div>
+				</t>
+								</div>
+									</div>
+	</div>
+
+	</div>
+
+</div>
+</template>
+
+
+</data>
+</odoo>

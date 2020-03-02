@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!-- Product listing page changes -->
+		<template id="product_listing_page" inherit_id="website_sale.products">
+			<xpath expr="//div[@id='products_grid']" position="replace">
+				<div class="container">
+
+					<div class="products wrapper grid columns4 flex-grid products-grid"
+						id="products_grid">
+						<!-- Loader -->
+							<div class="se-pre-con"></div>
+						<!-- Ends --> 
+
+						<ol class="filterproducts products list items product-items">
+							<t t-foreach="bins" t-as="tr_product">
+								<t t-foreach="tr_product" t-as="td_product">
+									<t t-if="td_product">
+										<t t-set="product" t-value="td_product['product']" />
+
+
+										<li class="item product product-item">
+											<div class="product-item-info" data-container="product-grid" style="padding: 10px 0 50px;"> <!-- style="padding: 10px 0 50px;" -->
+												<div class="product photo product-item-photo">
+													<!-- <a href="catalog/product/view/id/2064/s/too-faced/index.html"
+														tabindex="-1"> <img class="product-image-photo default_image" src="/sasmar_theme/static/src/img/s654095_1.jpg"
+														alt="Too Faced"/> </a> -->
+
+													<a t-attf-href="/shop/product/#{slug(product)}" tabindex="-1">
+														<img class="product-image-photo default_image"
+															t-att-src="website.image_url(product, 'image', None if product_image_big else '300x300')"
+															alt="" />
+													</a>
+												</div>
+												<div class="product details product-item-details">
+													<strong class="product name product-item-name">
+														<a class="product-item-link" t-attf-href="/shop/product/#{slug(product)}">
+															<span t-field="product.name" />
+														</a>
+													</strong>
+
+													<!--Price -->
+													<div class="product-reviews-summary short">
+														<div class="rating-summary">
+															<span class="label">
+																<span>Rating:</span>
+															</span>
+															<!--<div class="rating-result" title="0%"> -->
+															<div class="" title="100%">
+																<span>
+																	<img class="img img-responsive"
+																		src="/sasmar_theme/static/src/img/IcoRating5.png" alt="" />
+																</span>
+															</div>
+														</div>
+													</div>
+
+													<!--<t t-if="product.is_pack">
+													<div class="price-box price-final_price" data-role="priceBox"
+														data-product-id="2064">
+
+														<span class="price-container price-final_price tax weee">
+
+
+																		<span class="price" t-field="product.pack_new_price" t-field-options='{
+												                   "widget": "monetary",
+												                   "display_currency": "website.currency_id"
+												               }'>
+																</span>
+																</span>
+																</div>
+																</t>-->
+
+													<!--<t t-if ="not product.is_pack">-->
+													<div class="price-box price-final_price" data-role="priceBox"
+														data-product-id="2064">
+
+														<span class="price-container price-final_price tax weee">
+
+
+															<span id="product-price-2064" data-price-amount="39"
+																data-price-type="finalPrice" class="price-wrapper ">
+
+
+																<t t-if="(product.lst_price - product.price) &gt; 0.1">
+
+																	<del class="text-danger" style="white-space: nowrap;"
+																		t-field="product.lst_price"
+																		t-field-options='{
+							"widget": "monetary",
+							"from_currency": "product.company_id.currency_id",
+						    "display_currency": "website.currency_id"
+							}' />
+																	&amp;nbsp;
+																</t>
+
+
+																<span class="price" t-field="product.price" style="white-space: nowrap;"
+																	t-field-options='{
+												                   "widget": "monetary",
+												                   "display_currency": "website.currency_id"
+												               }'>
+																</span>
+															</span>
+															<span itemprop="priceCurrency" style="display:none;"
+																t-esc="user_id.partner_id.property_product_pricelist.currency_id.name" />
+															<span itemprop="price" style="display:none;" t-esc="product.price" />
+														</span>
+
+
+													</div><!--</t>-->
+													 <!--<a class="weltpixel-quickview weltpixel_quickview_button_v2" data-quickview-url="#"
+														href="javascript:void(0);"><i class="fa fa-eye"></i> <span> Quickview</span></a> -->
+													<t t-if="product.is_pack">
+														<span class="weltpixel-quickview weltpixel_quickview_button_v2"
+															href="#">
+															<i class="fa fa-eye"></i>
+															<span> Pack</span>
+														</span>
+													</t>
+													<div class="product-item-inner">
+														<div class="product actions"><!-- <div class="product actions product-item-actions"> -->
+															<a href="#" class="action actions-secondary" title="Wish List"
+																aria-label="Wish List"
+																data-action="add-to-wishlist" role="button"
+																style="visibility: visible;
+    position: static;
+    opacity: 1;
+    height: 40px;
+    line-height: 40px;
+    top: 0;
+    width: 40px;
+    border: 0;
+    background-color: #e6e6e6;
+    color: #000; display: none;">
+																<i class="fa fa-heart" aria-hidden="true"></i>
+																<span>Wish List</span>
+															</a>
+															<div class="actions-primary">
+																<form action="/shop/cart/update" method="post">
+																	<input name="product_id" t-att-value="product.product_variant_ids[0].id"
+																		type="hidden" />
+																	<input type="hidden" name="csrf_token"
+																		t-att-value="request.csrf_token()" />
+
+																	<button type="submit" title="Add to Cart" class="action primary"
+																		onclick="submit();" style="background-color: orange !important; border: 1px solid white !important;">
+																		<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+																		<span> Add to Cart</span>
+																	</button>
+																</form>
+															</div>
+															<a href="#" class="action actions-secondary" title="Compare"
+																aria-label="Compare"
+																role="button"
+																style="visibility: visible;
+    position: static;
+    opacity: 1;
+    height: 40px;
+    line-height: 40px;
+    top: 0;
+    width: 40px;
+    border: 0;
+    background-color: #e6e6e6;
+    color: #000; display: none;">
+																<i class="fa fa-signal" aria-hidden="true"></i>
+																<span>Compare</span>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+
+									</t>
+								</t>
+							</t>
+						</ol>
+
+						<t t-if="not bins">
+							<div class="text-center text-muted">
+								<h3 class="css_editable_display">No product defined.</h3>
+								<t groups="base.group_website_publisher">
+									<p groups="base.group_sale_manager">
+										Use the
+										<i>'Content'</i>
+										top menu to create a new product.
+									</p>
+								</t>
+							</div>
+						</t>
+					</div>
+				</div>
+			</xpath>
+
+		</template>
+
+
+	</data>
+</odoo>

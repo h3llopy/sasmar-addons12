@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- About Us page -->
+	<template id="about-us" name="About Us">
+ 		<t t-call="website.layout">
+ 		 <div class="page-wrapper">
+
+			<div class="breadcrumbs">
+				<ul class="items">
+						        <li class="home">
+						                <a href="/" title="Go to Home Page">
+						        Home                </a>
+						            </li>
+						            <span style="font-size: 10px;"> &gt;</span>
+						        <li class="blog">
+						                <strong> About Us</strong>
+						            </li>
+						</ul>
+			</div>
+<main id="maincontent" class="page-main">
+<div class="columns"><div class="column main">
+<br/>
+<div class="entry-content">
+    <div class="row">
+        <div class="row-wrapper container">
+            <div class="row">
+              
+                <div class="col-md-12">
+
+                    <h3 class="">About <strong> Us</strong></h3>
+                    <p><img class="" title="About Us" src="/sasmar_theme/static/src/img/about-us.jpg" alt="about-us.jpg" width="680" height="248"/></p>
+                    <h2 class="word-rotator-title"> <strong> The Future in Personal Care </strong></h2>
+
+                    <p>At SASMAR®, we make the best personal lubricants in the world! Helping couples in more than 60 countries internationally connect with each other better and with our Conceive Plus brand - we are doing a great job increasing the fertility rate too. You can find our products in supermarkets, clinics, hospitals, pharmacies and drugstores in more than 60 countries. SASMAR® personal lubricants really help to make using condom a lot more pleasurable and that is why we are also the major supplier of personal lubricant sachets to non-government organizations - helping to reduce HIV and unwanted pregnancies in developing and third world countries</p>
+                    <p>Incorporated in Sydney in 2005, SASMAR® is now headquartered in Brussels, Belgium with offices in Sydney, Hong Kong, London and Chicago. We're a fast growing company dedicated to delivering quality personal care products to consumers globally!</p>
+
+                    <div id="our-mission">
+                    <h2 class="word-rotator-title"> <strong> Our Mission </strong></h2>
+
+                    <p style="font-weight: bold;">SASMAR® is committed to improving the health and well being of consumers by providing products of superior quality and value. We incorporate the latest technology and advancements in over the counter and self medication and aim to be recognized as a leading brand by consumers around the world.</p>
+
+                   </div>
+
+                   <div id="company-values">
+                    <h2 class="word-rotator-title"> <strong> Our Values </strong></h2>
+
+                    <p>Our values describe who we are and how we act. They guide our everyday work and they way we treat each other, our customers and our business partners. </p>
+                    <p> <span style="font-weight: bold;">INTEGRITY </span> - Always do the right thing by the consumer, our customers and each other. </p>
+                    <p> <span style="font-weight: bold;">TRUST </span> - Be the brand retailers and consumers trust.  </p>
+                    <p> <span style="font-weight: bold;">QUALITY </span> - Every product ticks every box in quality assurance.  </p>
+                    <p> <span style="font-weight: bold;">INNOVATION </span> - To seek, drive and maintain innovation.  </p>
+                    <p> <span style="font-weight: bold;">PASSION </span> - Drives the heart of SASMAR.  </p>
+
+                   </div>
+
+
+                   <div id="our-partners">
+                    <h2 class="word-rotator-title"> <strong> Our Partners </strong></h2>
+
+                    <p style="font-weight: bold;">DISTRIBUTION OPPORTUNITIES</p>
+                    <p>SASMAR products can be found in more than 60 countries around the world, by major retailers, pharmacies, doctors clinics, convenience stores, online businesses and supermarkets through a network of distribution partners. We value the stronge partnershios we have with our distributors and our businesses continue to grow together, for the benefit of both companies and most importantly for the benefit of consumers.</p>
+                     <p>To discuss becomming a SASMAR distributor, contact our sales team</p>
+
+                     <p style="font-weight: bold;">IN-LICENSING &amp; ACQUISTION OPPORTUNITIES</p>
+                     <p>We have a track record of successful development, registration, commercialization and marketing of quality over the counter products in women’s health, fertility, family planning and disease prevention since 2005. We are actively seeking new partnerships with companies who are interested to license development stage products or technologies. SASMAR also has a particular interest in acquiring international and national brands (OTC) within the sexual health, fertility, and foot care categories.</p>
+                    <p> For a confidential discussion, please email us at regulatory @ sasmar.com or call us at +32 2 880 8220.</p>
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-wrapper container">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr class="tall"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div></div></div></main>
+
+		 </div>
+ 		</t>
+	</template>
+
+</data>
+</odoo>

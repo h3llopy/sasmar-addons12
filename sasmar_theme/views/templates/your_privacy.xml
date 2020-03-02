@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- FAQ page -->
+<template id="your-privacy" name="Your Privacy">
+
+<t t-call="website.layout">
+ 		 <div class="page-wrapper">
+
+			<div class="breadcrumbs">
+				<ul class="items">
+				<li class="home">
+						                <a href="/" title="Go to Home Page">
+						        Home                </a>
+						            </li>
+						            <span style="font-size: 10px;"> &gt;</span>
+						        <li class="blog">
+						                <strong>Your Privacy</strong>
+						            </li>
+						</ul>
+			</div>
+<main id="maincontent" class="page-main">
+<div class="columns"><div class="column main">
+<br/>
+<div class="entry-content">
+    <div class="row">
+        <div class="row-wrapper container">
+            <div class="row">
+                <div class="col-md-3">
+
+
+                    <div class="widget block block-categories" data-bind="scope: 'categories'">
+						<div class="block-title">
+							<strong style="text-transform: uppercase;">Categories</strong>
+						</div>
+
+						<ul class="accordion" id="accordion-2">
+										<li><em class="fa fa-caret-right theme-color"></em><a href="#" title="About us"> Personal Lubricants</a></li>
+										<li><em class="fa fa-caret-right theme-color"></em><a href="#" title="About us"> Trying for a Baby</a></li>
+										<li><em class="fa fa-caret-right theme-color"></em><a href="#" title="About us"> Sensual Massage</a></li>
+
+										</ul>
+
+					</div>
+
+      				<!-- Most Popular Products -->
+					<t t-call="sasmar_theme.most_popular_products" />
+				<!-- End Most Popular Products -->
+
+                </div>
+                <div class="col-md-9">
+
+                    <h3 class=""><strong> YOUR PRIVACY</strong></h3>
+                    <p><img class="" title="About Us" src="/sasmar_theme/static/src/img/privacy.jpg" alt="Privacy Policy" width="680" height="248"/></p>
+                 <p>This Privacy Policy explains how we handle the personal information that you provide to us on web sites controlled by SASMAR (including its subsidiaries and affiliates) which link to this Privacy Policy (referred to as   SASMAR web sites  ). This Privacy Policy does not apply to personal information collected from you offline, to SASMAR web sites that do not link to this Privacy Policy or to third-party web sites to which SASMAR web sites may link. Your use of SASMAR web sites, which link to this Privacy Policy is subject to this Privacy Policy and the Terms of Use.</p>
+<p>  </p>
+<p>Please read this Privacy Policy before using SASMAR web sites or submitting personal information to us.</p>
+<p>  </p>
+<p><strong>How does this Privacy Policy define "personal information"?</strong></p>
+<p>  Personal information   means information that identifies you or could reasonably be used to identify you and which is submitted to and/or collected by SASMAR web sites and maintained by SASMAR in an accessible form. Examples of personal information include your name, your postal address and your telephone number. How does SASMAR collect information online?</p>
+<p>  </p>
+<p><strong>SASMAR collects information in two ways:</strong></p>
+<p>1. Personal Information You Submit: SASMAR collects personal information that you enter into data fields on SASMAR web sites. For example, you may submit your name, postal address, e-mail address, and/or other information in order to receive information about various subjects, register for SASMAR programs, contact SASMAR customer service, or respond to SASMAR surveys. To protect your privacy, you should not provide SASMAR with any information that is not specifically requested. *</p>
+<div>  </div>
+<p>2. Passive Collection of Unidentifiable Information: SASMAR web sites may collect information about your visits to SASMAR web sites without you actively submitting such information. Unidentifiable information may be collected using various technologies, such as cookies, Internet tags, and web beacons. Your Internet browser automatically transmits to SASMAR web sites some of this unidentifiable information, such as the URL of the web site you just visited and the browser version your computer is operating. Passive information collection technologies can make your use of SASMAR web sites easier by allowing SASMAR to provide better service, customize sites based on consumer preferences, compile statistics, analyze trends, and otherwise administer and improve SASMAR web sites. Certain features of SASMAR web sites may not work without use of passive information collection technologies. Information collected by these technologies cannot be used to identity you without additional identifiable information.</p>
+<div>  </div>
+<p><strong>In what circumstances might SASMAR collect and use personal information?</strong></p>
+<p>SASMAR will use the personal information you provide through SASMAR web sites to respond to your questions and to provide you with efficient customer service. After you have entered personal information into a form or data field on an SASMAR web site, SASMAR may use certain identifying technologies to allow that web site to   remember   your personal preferences, such as sections of that web site that you visit frequently and, if you choose, your user ID. We may also use this personal information for other business purposes, such as to offer you the opportunity to receive notices regarding SASMAR  s products or services, to invite you to participate in surveys about our products, or to notify you about special promotions. .</p>
+<div>  </div>
+<p><strong>Does SASMAR collect or store my credit card information?</strong></p>
+<p>SASMAR Does NOT collect or store credit card data. All transations are processed using third party payment processing companies including PayPal.</p>
+<div>  </div>
+<p><strong>Does SASMAR consolidate personal information?</strong></p>
+<p>SASMAR may consolidate the personal information of customers who use SASMAR web sites. We use this information to help us better design SASMAR web sites and SASMAR products, to communicate information to you, to enhance our marketing and research activities, and to facilitate other business functions. What choices do I have about how SASMAR collects and uses personal information about me?</p>
+<p>You may always limit the amount and type of personal information that SASMAR receives about you by choosing not to enter any personal information into forms or data fields on SASMAR web sites. Some of our online services can only be provided to you if you provide us with appropriate personal information. Other parts of SASMAR web sites may ask whether you wish to opt out or opt into our contact lists for offers, promotions and additional services that may be of interest to you.</p>
+<div>  </div>
+<p><strong>Who will have access to personal information about me?</strong></p>
+<p>Personal information can be accessed by a restricted number of SASMAR employees, by certain companies with which SASMAR may conduct joint programs, and by individuals and entities with whom SASMAR contracts to carry out business activities for SASMAR. We train our employees about the importance of privacy and how to handle and manage customer data appropriately and securely. Also, it is SASMAR  s practice to notify you if you are registering for a program which is conducted in conjunction with another company that may require access to your personal information. In addition, SASMAR  s practice is to require its contractors to keep your personal information confidential and to use personal information only to perform functions for SASMAR.</p>
+<div>  </div>
+<p><strong>Does SASMAR share personal information with third parties?</strong></p>
+<p>As a general rule, SASMAR does not share your personal information with third parties, unless it is necessary to conduct a joint program or to carry out a program or activity through a contractor. Where required by law, SASMAR will not disclose your personal information to third parties for those third parties   marketing purposes, unless you have been provided with an opportunity to opt into or opt out of this disclosure. However, if SASMAR sells one of its product lines or divisions, your personal information may be transferred to the buyer so that the buyer can continue to provide you with information and services. If SASMAR provides your personal information to individuals and entities which assist us with our business activities, it is SASMAR  s practice to require those individuals and entities to keep your personal information confidential and to use your personal information only to perform functions for SASMAR. SASMAR reserves the right to disclose your personal information to respond to authorized information requests from government authorities, to address national security situations, or when otherwise required by law.</p>
+<div>  </div>
+<p><strong>How does SASMAR secure personal information?</strong></p>
+<p>It is SASMAR  s practice to secure each web page that collects personal information; however, the confidentiality of personal information transmitted over the Internet cannot be guaranteed. We urge you to exercise caution when transmitting personal information over the Internet, especially personal information related to your health. SASMAR cannot guarantee that unauthorized third parties will not gain access to your personal information; therefore, when submitting personal information to SASMAR web sites, you must weigh both the benefits and the risks. In addition, SASMAR web sites covered by this Privacy Policy will display a warning whenever you link to a web site that is not controlled by SASMAR or subject to an SASMAR privacy policy; you should check the privacy policies of such third-party web sites before submitting personal information.</p>
+<div>  </div>
+<p><strong>How does SASMAR protect the privacy of children?</strong></p>
+<p>SASMAR does not knowingly collect or use any personal information from children (we define "children" as minors younger than 16) on SASMAR web sites. We do not knowingly allow children to order our products, communicate with us, or use any of our online services. If you are a parent and become aware that your child has provided us with information, please contact us using one of the methods specified below, and we will work with you to address this issue.</p>
+<div>  </div>
+<p><strong>How may I correct personal information or delete it from current customer records?</strong></p>
+<p>You may request to remove your personal information from our current customer records or to amend your personal information. Please notify us of your wishes by contacting us in one of the ways specified below. For our record keeping purposes, we will retain certain personal information you submit in conjunction with commercial transactions. How can I contact SASMAR?</p>
+<p>If you have questions about the use, amendment, or deletion of personal information that you have provided to us, or if you would like to opt out of future communications from an SASMAR business or a particular SASMAR program, please contact us by clicking on the   Contact Us   link on the web site you are visiting or by e-mailing us at helpdesk (at) sasmar.com. Alternatively, you may send a letter to the following address:</p>
+<div>  </div>
+<p><strong>SASMAR</strong></p>
+<p><strong>Attention: Legal</strong></p>
+<p><strong>42 rue de L' Association</strong></p>
+<p><strong>1000 Brussels</strong></p>
+<p><strong>BELGIUM</strong></p>
+<div>  </div>
+<p>In all communications to SASMAR, please include the e-mail address used for registration (if applicable), the web site address or the specific SASMAR program to which you provided personal information (e.g. SASMAR.com, conceiveplus.com, etc.), and a detailed explanation of your request. If you would like to delete or amend your personal information and are contacting us by e-mail, please put   Deletion Request   or   Amendment Request  , as applicable, in the subject line of the e-mail. We will do our best to respond to all reasonable requests in a timely manner.</p>
+<div>  </div>
+<p><strong>How will I know whether SASMAR has updated this policy?</strong></p>
+<p>SASMAR reserves the right to amend this Privacy Policy without prior notice to reflect technological advancements, legal and regulatory changes and good business practices. If SASMAR changes its privacy practices, a new Privacy Policy will reflect those changes and the effective date of the revised Privacy Policy will be set forth in this paragraph. This Privacy Policy was last updated on August 07, 2009 and is effective as of that date.</p>
+<div>  </div>
+<p>  Conceive Plus and SASMAR products are manufactured by: SASMAR SPRL.  </p>
+<p>
+<p><strong>This website is controlled and operated by</strong>: SASMAR Limited, 69 Old Broad Street London EC2M 1QS United Kingdom. Registered in England number 06966600 VAT GB100 1117 08</p>
+</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-wrapper container">
+            <div class="row">
+                <div class="col-md-12">
+                    <hr class="tall"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div></div></div></main>
+
+		 </div>
+ 		</t>
+	</template>
+
+</data>
+</odoo>

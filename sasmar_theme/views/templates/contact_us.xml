@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- Contact Us page -->
+
+<template id="website.contactus" name="Contact us">
+    <t t-call="website.layout">
+    <div id="wrap">
+        <div class="oe_structure"/>
+
+        <div class="page-wrapper">
+			<div class="breadcrumbs">
+				<ul class="items">
+			       <li class="home">
+			            <a href="/" title="Go to Home Page">
+                            Home
+                        </a>
+			        </li>
+			        <span style="font-size: 10px;"> &gt;</span>
+			        <li class="blog">
+			            <strong>Contact Us</strong>
+			        </li>
+				</ul>
+			</div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="oe_structure">
+                        <br/>
+                        <div>
+                        <h1 >
+                            <strong style="text-transform: uppercase; color: #0075AC;">
+                                Contact Us
+                            </strong>
+                        </h1>
+                        <p>
+                            <img class="img img-responsive" title="Contact Us" src="/sasmar_theme/static/src/img/contact-sasmar.jpg" alt="Contact Us" width="680" height="248" />
+                        </p>
+                        <p>We love hearing from you but be sure to visit our <a href="/faq">FAQ's page</a> first for answers to the most commonly asked questions we receive. Our helpdesk is available 9am to 5:30pm Mon-Fri CET (Brussels).
+                        </p>
+                          <br/>
+                        </div>
+                    </div>
+                    <div class="text-center mt64" name="mail_button">
+                        <a t-attf-href="mailto:{{ res_company.email }}" class="btn btn-primary">Send us an email</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb32" style="display:none;">
+                	<h3 class="contacts-title" style="text-transform: uppercase; color: #0075AC;">Contact <b>Details</b></h3>
+                    <t t-call="website.company_description"/>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="oe_structure"/>
+    </div>
+    </t>
+</template>
+
+<!-- Contact Us Thank You page -->
+
+<!-- <template id="contactus_thanks" name="Contact us Thank You" inherit_id="website_crm.contactus_thanks">
+    <xpath expr="//div[@id='wrap']" position="replace">
+      <div id="wrap">
+        <div class="oe_structure"/>
+        <div class="container">
+            <h1>Thanks!</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        Your message has been sent successfully.
+                        <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                    </div>
+                    <p class="mt64">
+                        If you have an emergency, do not hesitate to contact us by phone:
+                    </p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone"></i> : +32 2 880 8220 </li>
+                        <li><i class="fa fa-envelope"></i> : finance@sasmar.com </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-unstyled">
+                        <li> SASMAR PHARMACEUTICALS SPRL</li> 
+                        <li><i class="fa fa-map-marker"></i> Chaussée de la Hulpe 187</li>
+                        <li> Brussels 1170</li>
+                        <li> Belgium</li>
+                        <li><i class="fa fa-phone"></i> +32 2 880 8220</li>
+                        <li><i class="fa fa-fax"></i> +32 2 880 8221</li>
+                        <li><i class="fa fa-envelope"></i> finance@sasmar.com</li>
+                    </ul>
+                    <a href="https://maps.google.com/maps?q=LVL+57%2C+19-29+MARTIN+PLACE%2C+SYDNEY+2000%2C+Australia&amp;z=8" target="_BLANK">Visualize on Google Maps</a>
+                </div>
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div>
+      </xpath>
+</template> -->
+
+<record id="contactus_thanks" model="website.page">
+        <field name="name">Contact us Thank You</field>
+        <field name="type">qweb</field>
+        <field name="url">/contactus-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">website_crm.contactus_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Contact us Thank You" t-name="website_crm.contactus_thanks">
+                <t t-call="website.layout">
+                  <div id="wrap">
+                    <div class="oe_structure"/>
+                    <div class="container">
+                        <h1>Thanks!</h1>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="alert alert-success">
+                                    Your message has been sent successfully.
+                                    <button type="button" class="close" data-dismiss="alert">&amp;times;</button>
+                                </div>
+                                <p class="mt64">
+                                    If you have an emergency, do not hesitate to contact us by phone:
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-phone"></i> : +32 2 880 8220 </li>
+                                    <li><i class="fa fa-envelope"></i> : finance@sasmar.com </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <ul class="list-unstyled">
+                                    <li> SASMAR PHARMACEUTICALS SPRL</li> 
+                                    <li><i class="fa fa-map-marker"></i> Chaussée de la Hulpe 187</li>
+                                    <li> Brussels 1170</li>
+                                    <li> Belgium</li>
+                                    <li><i class="fa fa-phone"></i> +32 2 880 8220</li>
+                                    <li><i class="fa fa-fax"></i> +32 2 880 8221</li>
+                                    <li><i class="fa fa-envelope"></i> finance@sasmar.com</li>
+                                </ul>
+                                <a href="https://maps.google.com/maps?q=LVL+57%2C+19-29+MARTIN+PLACE%2C+SYDNEY+2000%2C+Australia&amp;z=8" target="_BLANK">Visualize on Google Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                  </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+</data>
+</odoo>
