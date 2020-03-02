@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+<!-- Thank You page -->
+<template id="thank_you" name="Thank You For Register">
+
+<t t-call="website.layout">
+      <div id="wrap">
+        <div class="oe_structure"/>
+
+        <div class="page-wrapper">
+
+			<div class="breadcrumbs">
+				<ul class="items">
+						       <li class="home">
+						                <a href="/" title="Go to Home Page">
+						        Home                </a>
+						            </li>
+						        <span style="font-size: 10px;"> &gt;</span>
+						        <li class="blog">
+						                <strong>Thank You</strong>
+						            </li>
+						</ul>
+			</div>
+
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="oe_structure"><br/>
+                        <div>
+                        <h1 class=""><strong style="text-transform: uppercase; color: #0075AC;">Thank You</strong></h1>
+<h3>Thank you for Registration, We strive to approve your registration request within 48 hours, but it's usually quicker. To expedite your request call us on +1 (773) 942 0030 ext 602 or contact our sales team by email sales(at)sasmar.com.</h3><br />
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="oe_structure"/>
+      </div></div>
+    </t>
+</template>
+
+
+</data>
+</odoo>
