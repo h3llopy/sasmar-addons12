@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record id="product_view_tree_inherit_ept" model="ir.ui.view">
+			<field name="name">Product product ept</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_product_tree_view" />
+			<field name="arch" type="xml">
+				<field name="type" position="after">
+					<field name="carrier_tracking_ref"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

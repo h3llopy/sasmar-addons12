@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="website_region_form_view_extended_ept" model="ir.ui.view">
+			<field name="name">website.region.form</field>
+            <field name="model">website.region</field>
+            <field name="inherit_id" ref="website_region.website_region_form_view"/>
+            <field name="arch" type="xml">
+	                <field name="name" position="after">
+	                	<field name="shipwire_warehouse"></field>
+					</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    <record id="default_region" model="website.region">
+            <field name="name">USA</field>
+    </record>
+
+	<record id="default_country" model="website.region.country">
+			<field name="company_id" ref="base.main_company"/>
+			<field name="country_id" ref="base.be"/>
+<!-- 			<field name="flag_image">/website_region/static/src/img/flags/us.gif</field> -->
+			<field name="pricelist_id" ref="product.list0"/>
+            <field name="region_id" ref="website_region.default_region"/>
+            <field file="website_region/static/src/img/flags/us.gif" name="flag_image" type="base64" />
+    </record>
+    
+    </data>
+</openerp>

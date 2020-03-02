@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+
+		<!-- Product Category -->
+		<record model="ir.ui.view" id="view_sale_order_region_inherit">
+			<field name="name">sale.order.inherited</field>
+			<field name="model">sale.order</field>
+			<field name="inherit_id" ref="sale.view_order_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='pricelist_id']" position="after">
+					<field name="region_id" />   <!-- Region Field in sale.order -->
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Res Partner -->
+		<record model="ir.ui.view" id="view_res_partner_region_inherit">
+			<field name="name">res.partner.inherited</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="product.view_partner_property_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='property_product_pricelist']" position="after">
+					<field name="website_pricelist_id" />
+					<field name="region_country_id" />   <!-- country Field in res.partner -->
+				</xpath>
+			</field>
+		</record>
+		
+
+		<!-- Website Region Pricelist -->
+		<record id="website_region_form_view" model="ir.ui.view">
+			<field name="name">website.region.form</field>
+			<field name="model">website.region</field>
+			<field name="arch" type="xml">
+				<form string="Website Region">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" />
+							</group>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="website_region_tree_view" model="ir.ui.view">
+			<field name="name">website.region.tree</field>
+			<field name="model">website.region</field>
+			<field name="arch" type="xml">
+				<tree string="Website Region">
+					<field name="name" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="website_region" model="ir.actions.act_window">
+			<field name="name">Website Region</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">website.region</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="website_region" id="menu_website_region"
+			parent="sale.product_menu_catalog"/>
+
+
+		<!-- Website Region Country Pricelist -->
+		<record id="website_region_country_pricelist_form_view" model="ir.ui.view">
+			<field name="name">website.region.country.pricelist.form</field>
+			<field name="model">website.region.country</field>
+			<field name="arch" type="xml">
+				<form string="Website Region Country">
+					<sheet>
+						<group>
+							<group>
+								<field name="region_id" />
+								<field name="company_id"/>
+								<field name="country_id" />
+							</group>
+							<group>
+								<field name="pricelist_id" />
+								<field name="lang"/>
+                                <field name="flag_image" widget='image'/>
+							</group>
+							
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="website_region_country_pricelist_tree_view" model="ir.ui.view">
+			<field name="name">website.region.country.pricelist.tree</field>
+			<field name="model">website.region.country</field>
+			<field name="arch" type="xml">
+				<tree string="Website Region Country">
+					<field name="country_id" />
+					<field name="region_id"></field>
+				</tree>
+			</field>
+		</record>
+
+		<record id="website_region_country_pricelist" model="ir.actions.act_window">
+			<field name="name">Website Region Country</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">website.region.country</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="website_region_country_pricelist" id="menu_website_region_country_pricelist"
+		parent="sale.product_menu_catalog"/>
+
+	</data>
+</odoo>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="custom_purchase_order_external_layout">
+			<!-- Multicompany -->
+			<t t-if="o and 'company_id' in o">
+				<t t-set="company" t-value="o.company_id"></t>
+			</t>
+			<t t-if="not o or not 'company_id' in o">
+				<t t-set="company" t-value="res_company"></t>
+			</t>
+			<t t-foreach="docs" t-as="docs">
+				<t t-call="sasmar_report.custom_purchase_order_external_layout_header" />
+				<t t-raw="0" />
+				<t t-call="sasmar_report.custom_purchase_order_external_layout_footer" />
+			</t>
+		</template>
+
+		<template id="custom_purchase_order_external_layout_header">
+			<div class="header">
+				<t t-foreach="docs" t-as="o">
+					<div class="row" style="border-bottom: 2px solid black;">
+						<div class="col-xs-6" style="margin-top:20px;margin-bottom:20px;font-family: Arial;">
+							<img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo"
+												style="width:150px;height:60px; margin-bottom: 20px;margin-top: 10px" /> <br/>
+							<strong style="font-size: 20;" t-if="o.state in ['draft', 'sent', 'bid', 'confirmed']">Request For Quotation</strong>
+							<strong style="font-size: 20;" t-if="o.state not in ['draft', 'sent', 'bid', 'confirmed']">Purchase Order</strong> <br/>
+							<span style="margin-left: 10px;" t-field="o.company_id.name"/> <br/>
+							<span style="margin-left: 10px;" t-field="o.company_id.street"/> <br/>
+							<span style="margin-left: 10px;" t-field="o.company_id.city"/> ,
+							<span style="margin-left: 10px;" t-field="o.company_id.zip"/> <br/>
+							<span style="margin-left: 10px;" t-field="o.company_id.country_id"/> <br/>
+							<span style="margin-left: 10px;" t-field="o.company_id.vat"/> <br/>
+							<strong style="margin-left: 10px;">Tel: </strong><span t-field="o.company_id.phone"/>
+							<strong>Fax: </strong><span t-field="o.company_id.fax"/>
+						</div>
+						<div class="col-xs-6" style="font-size:12.0;margin-top:30px;margin-bottom:20px;">
+							<div class="row">
+								<table style="width:100%;">
+									<tr style="height:22px;background-color: #4B71A9; color: #ffffff;">
+										<td style="width:16%;padding:3px;padding-left:10px;">
+											<span>Date</span>
+										</td>
+										<td style="border-left:2px solid white; width:16%;padding:3px;padding-left:10px;">
+											<span>PO #</span>
+										</td>
+										<td style="border-left:2px solid white; width:30%;padding:3px;padding-left:10px;">
+											<span>Your Contact</span>
+										</td>
+									</tr>
+									<tr style="height: 22px">
+										<td style="padding:3px;padding-left:10px;">
+											<span t-esc="get_date(o)"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.name"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.user_id"></span>
+										</td>
+									</tr>
+								</table>
+								<table style="width:100%;">
+									<tr style="background-color: #4B71A9; color: #ffffff; height: 22px;">
+										<td style="width: 30%;padding:3px;padding-left:10px;">
+											<span>Country of Origin</span>
+										</td>
+										<td style="border-left:2px solid white; width: 20%;padding:3px;padding-left:10px;">
+											<span>Ship Method</span>
+										</td>
+										<td style="border-left:2px solid white; width: 25%;padding:3px;padding-left:10px;">
+											<span>Validated By</span>
+										</td>
+									</tr>
+									<tr style="height: 22px">
+									<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.partner_id.country_id"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.ship_via"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<!--<span t-field="o.validator"></span>-->
+										</td>
+									</tr>
+								</table>
+								<table style="width:100%;">
+									<tr style="background-color: #4B71A9; color: #ffffff; height: 22px;">
+										<td style="width: 35%;padding:3px;padding-left:10px;">
+											<span>Estimated Supply Date</span>
+										</td>
+										<td style="border-left:2px solid white; width: 35%;padding:3px;padding-left:10px;">
+											<span>Terms</span>
+										</td>
+										<td style="border-left:2px solid white; width: 30%;padding:3px;padding-left:10px;">
+											<span>Your Quotation #</span>
+										</td>
+									</tr>
+									<tr style="height: 22px">
+										<td style="padding:3px;padding-left:10px;">
+											<span t-esc="get_est_date(o)"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.payment_term_id"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.qoute_no"></span>
+										</td>
+									</tr>
+								</table>
+								<table style="width:100%">
+								<tr style="background-color: #4B71A9; color: #ffffff; height: 22px;">
+									<td style="width: 60%;padding:3px;padding-left:10px;">
+											<span>Incoterm</span>
+										</td>
+										<td style="border-left:2px solid white; width: 40%;padding:3px;padding-left:10px;">
+											<span>Supplier Tax #</span>
+										</td>
+									</tr>
+									<tr style="height: 22px">
+									<td style="padding:3px;padding-left:10px;">
+											<span t-field="o.incoterm_id"></span>
+										</td>
+										<td style="padding:3px;padding-left:10px;">											<span t-field="o.partner_id.vat"></span>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				</t>
+			</div>
+		</template>
+
+		<template id="custom_purchase_order_external_layout_footer">
+			<div class="footer">
+				<div class="row">
+					<t t-foreach="docs" t-as="o">
+						<span>
+							By acceptance of this purchase order you agree to supply in accordance with the general condition of purchase. Any question regarding this purchase order should be directed to the officer noted or by emailing finance@sasmar.com
+						</span>
+						<div style="margin-top: 15px; font-size: 12">
+							<t t-if="o.company_id.custom_footer == False">
+                              	Phone: <span t-field="company.phone"/> | Fax: <span t-field="company.fax"/> | Email: <span t-field="company.email"/> | Website: <span t-field="company.website"/> | TIN: <span t-field="company.vat"/> 
+							</t>
+							
+							<t t-if="o.company_id.custom_footer == True">
+                        		<span t-field="o.company_id.rml_footer"/>
+                        	</t>
+							
+						</div>
+					</t>	
+				</div>
+			</div>
+		</template>
+	</data>
+</openerp>

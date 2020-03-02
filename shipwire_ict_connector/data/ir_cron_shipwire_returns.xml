@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		 <record forcecreate="True" id="sync_shipwire_retunr_orders" model="ir.cron">
+            <field name="name">Sync Shipwire Return Orders</field>
+            <field name="active" eval="False" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False" />
+           
+
+             <field name="model_id" ref="stock.model_stock_picking"/>
+           
+            <field name="code">model.sync_shipwire_returns_process()</field>
+            <field name="state">code</field>
+		</record>
+	</data>
+</openerp>

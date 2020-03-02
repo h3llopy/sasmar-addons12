@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		 <record id="inherit_view_account_payment_invoice_form" model="ir.ui.view">
+            <field name="name">account.payment.invoice.form</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref='account.view_account_payment_invoice_form' />
+			<field eval="8" name="priority" />
+			<field name="arch" type="xml">
+                <field name="writeoff_account_id" position="replace">
+					<field name="writeoff_account_id" string="Post Difference In"  context = "{'account': default_invoice_ids }"
+                                    attrs="{'invisible': [('payment_difference_handling','=','open')], 'required': [('payment_difference_handling', '=', 'reconcile')]}"/>	
+				</field>
+            </field>
+        </record>
+	
+		<record id="view_voucher_filter_vendor" model="ir.ui.view">
+			<field name="name">account.voucher.purchase.select</field>
+			<field name="model">account.voucher</field>
+			<field name="arch" type="xml">
+				<search string="Search Vouchers">
+					<field name="number" string="Voucher" />
+					<field name="date" />
+					<filter string="Draft" domain="[('state','=','draft')]"
+						help="Draft Vouchers" />
+					<filter string="Posted" domain="[('state','=','posted')]"
+						help="Posted Vouchers" />
+					<field name="partner_id" string="Vendor"
+						filter_domain="[('partner_id','child_of',self)]" />
+					<field name="journal_id" widget="selection"
+						context="{'journal_id': self, 'set_visible':False}" domain="[('type','=','purchase')]" /> <!-- Keep widget=selection on this field to pass numeric `self` value, which 
+						is not the case for regular m2o widgets! -->
+					<group expand="0" string="Group By">
+						<filter string="Vendor" domain="[]" context="{'group_by':'partner_id'}" />
+						<filter string="Journal" domain="[]" context="{'group_by':'journal_id'}" />
+						<filter string="Date" domain="[]"
+							context="{'group_by':'date','visible':True}" />
+						<filter string="Status" domain="[]" context="{'group_by':'state'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_voucher_tree_purchase">
+			<field name="name">account.voucher.tree.supplier</field>
+			<field name="model">account.voucher</field>
+			<field name="arch" type="xml">
+				<tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'"
+					string="Voucher Entries" create="0" edit="0">
+					<field name="date" />
+					<field name="number" />
+					<field name="reference" />
+					<field name="partner_id" string="Vendor" />
+					<field name="voucher_type" invisible="context.get('visible', True)" />
+					<field name="amount" sum="Total Amount" />
+					<field name="currency_id" invisible="1" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Purchase Vouchers -->
+		<record model="ir.ui.view" id="view_purchase_receipt_form_inherit_ept">
+			<field name="name">account.voucher.purchase.form.inherit.ept</field>
+			<field name="model">account.voucher</field>
+			<field name="inherit_id" ref="account_voucher.view_purchase_receipt_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//label['Cash Receipts']" position="attributes">
+					<attribute name="string">Cash Receipts</attribute>
+				</xpath>
+				<xpath expr="//field[@name='line_ids']/tree/field[@name='tax_ids']" position="attributes">
+					<attribute name="domain">[('type_tax_use','=','purchase'),('company_id','=', parent.company_id)]</attribute>
+					<attribute name="options">{'no_create':True}</attribute> 
+				</xpath>
+				<field name="move_id" position="before">
+					<field name="date" />
+				</field>					
+			</field>
+		</record>
+
+		<record id="account_voucher.action_purchase_receipt" model="ir.actions.act_window">
+			<field name="name">Cash Receipts</field>
+			<field name="res_model">account.voucher</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,kanban</field>
+			<field name="domain">[('journal_id.type','=','purchase'),
+				('voucher_type','=','purchase')]</field>
+			<field name="context">{'default_voucher_type': 'purchase',
+				'voucher_type': 'purchase'}</field>
+			<field name="view_id" eval="view_voucher_tree_purchase" />
+			<field name="search_view_id" eval="view_voucher_filter_vendor" />
+			<field name="target">current</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">
+					Click to register a purchase receipt.
+              </p>
+				<p>
+					When the purchase receipt is confirmed, you can record the
+					vendor payment related to this purchase receipt.
+              </p>
+			</field>
+		</record>
+		
+		<menuitem id="account_voucher.menu_action_purchase_receipt"
+			name="Cash Receipts" action="account_voucher.action_purchase_receipt"
+			parent="account.menu_finance_payables" sequence="4" />
+
+	</data>
+</openerp>

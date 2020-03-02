@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_shipwire_instance_inherit">
+            <field name="name">shipwire.instance.form.inherit</field>
+            <field name="inherit_id" ref="shipwire_api_operation.shipwire_instance_form_view_ept"/>
+            <field name="model">shipwire.instance</field>
+            <field name="arch" type="xml">
+                <field name="password" position="after">
+                    <field name="last_do_sync_date"/>
+                    <field name="last_return_sync_date"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

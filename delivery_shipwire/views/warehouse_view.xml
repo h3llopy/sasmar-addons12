@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+		
+	<data>
+		
+		<record id="sasmar_custom_warehouse_view" model="ir.ui.view">
+            <field name="name">shipwire.custom.warehouse.view</field>
+            <field name="model">stock.warehouse</field>
+            <field name="inherit_id" ref="stock.view_warehouse"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                	<field name="delivery"/>
+                    
+                </field>
+                 <xpath expr="//notebook/page[2]" position="after">
+
+  		 			<page attrs="{'invisible': [('delivery', '=', False)]}" string="Shipwire Configuration" groups="stock.group_stock_manager">
+                	    <group>
+                        	
+					       
+					       <field name="shipwire_username" attrs="{'invisible': [('delivery', '=', False)]}"/>
+					       <field name="shipwire_passwd" attrs="{'invisible': [('delivery', '=', False)]}"/>
+					       <field name="shipwire_test_mode"  attrs="{'invisible': [('delivery', '=', False)]}"/>
+					       <button name="SyncProductsStockButton" string="Syncronize Stock" type="object" attrs="{'invisible': [('delivery', '=', False)]}"/>
+                           <button name="SyncProductsShipwireButton" string="Syncronize Products" type="object" attrs="{'invisible': [('delivery', '=', False)]}"/>
+                           <button name="CheckOrderStatusShipwireButton" string="Check Order Status" type="object" attrs="{'invisible': [('delivery', '=', False)]}"/>
+                   
+					       </group>
+				        <field name="location_sync_line" context="{'default_warehouse_id': active_id}">
+                                            <tree string="Location Sync" editable="bottom" >
+                                                <field name="warehouse_id" invisible="0" />
+                                                <field name="location_id" domain="[('usage','=','internal')]"/>
+                                                <field name="shipwire_warehouse_id"/>
+                                            </tree>     
+                        </field>               
+                    </page>
+
+            	</xpath>
+            </field>
+        </record>
+		
+		
+	</data>
+</openerp>

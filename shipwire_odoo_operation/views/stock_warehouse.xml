@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		
+			<record id ="shipwire_warehouse_form_view_ept" model="ir.ui.view">
+				<field name="name">shipwire.custom.warehouse.view</field>
+	            <field name="model">stock.warehouse</field>
+	            <field name="inherit_id" ref="stock.view_warehouse"/>
+	            <field name="arch" type="xml">
+	                <field name="code" position="after">
+	                	<field name="warehouse_shipwire"/>
+	                	<field name="active"/>
+	                </field>
+	                <xpath expr="//notebook/page[2]" position="after">
+						<page attrs="{'invisible': [('warehouse_shipwire', '=', False)]}" string="Shipwire Configuration">
+	                	    <group>
+	                	    	<group>
+	                	    		<field name="shipwire_warehouse_id"></field>
+	                	    		<field name="shipwire_damage_location" ></field>
+	                	    	</group>
+	                	    	<group>
+	                	    		<field name="inventory_adjust"></field>
+	                	    		<field name="damage_inventory" attrs="{'invisible': [('inventory_adjust', '=', False)]}"></field>
+	                	    		<field name="inventory_auto_start" attrs="{'invisible': [('inventory_adjust', '=', False)]}" invisible="1"></field>
+	                	    		<field name="inventory_auto_validate" attrs="{'invisible': [('inventory_adjust', '=', False)]}" invisible="1"></field>
+	                	    	</group>
+	                	    </group>
+                	    </page>
+               	    </xpath>
+                </field>	
+			</record>
+	
+	</data>
+</openerp>
