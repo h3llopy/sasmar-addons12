@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data  noupdate="0">
+
+    <record id="group_ict_manager" model="res.groups">
+        <field name="name">ICT Manager</field>
+        <field name="menu_access" eval="[
+        	(4, ref('menu_intercompany_transaction')),
+        	(4, ref('menu_intercompany_record')),
+        	(4, ref('menu_intercompany_config_record')),
+        	]"/>
+    </record>
+    
+    <record id="group_ict_user" model="res.groups">
+        <field name="name">ICT User</field>
+        <field name="menu_access" eval="[
+        	(4, ref('menu_intercompany_transaction')),
+        	(4, ref('menu_intercompany_record')),
+        	(4, ref('menu_intercompany_config_record')),
+        	]"/>
+    </record>
+  
+</data>
+</openerp>

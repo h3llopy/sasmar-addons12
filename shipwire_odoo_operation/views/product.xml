@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="shipwire_product_id_char_form_view_ept">
+            <field name="name">prodcut.product.shipwire</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="priority">60</field>
+            <field name="arch" type="xml">
+	                <field name="barcode" position="after">
+	                	<field name="shipwire_product_id" readonly="1"/>
+	                	<field name="shipwire_length"/>
+	                	<field name="shipwire_width"/>
+	                	<field name="shipwire_height"/>
+	                	<field name="shipwire_weight"/>
+	                </field>
+			</field>
+    	</record>
+	</data>
+</openerp>

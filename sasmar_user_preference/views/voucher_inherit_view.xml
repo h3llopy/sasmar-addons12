@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="account_voucher.view_purchase_receipt_form">
+            <field name="name">account.voucher.purchase.form</field>
+            <field name="model">account.voucher</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Voucher">
+                <header>
+                    <button name="proforma_voucher" string="Validate" states="draft" class="oe_highlight" type="object"/>
+                    <button name="cancel_voucher" string="Cancel" type="object" states="draft,proforma" />
+                    <button name="cancel_voucher" string="Cancel" type="object" states="posted" confirm="Are you sure you want to cancel this receipt?"/>
+                    <button name="action_cancel_draft" type="object" states="cancel" string="Set to Draft"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted" statusbar_colors='{"proforma":"blue"}'/>
+                </header>
+                <sheet string="Vendor Voucher">
+                    <label for="number" string="Cash Receipts"/>
+                    <h1>
+                        <field name="number" readonly="1"/>
+                    </h1>
+                    <field name="voucher_type" invisible="True"/>
+                    <group>
+                        <group>
+                            <field name="partner_id" domain="[('supplier','=',True)]" string="Vendor" context="{'default_customer': 0, 'search_default_supplier': 1, 'default_supplier': 1}" />
+                            <field name="pay_now" required="1"/>
+                            <field name="account_id"/>
+                            <field name="name" colspan="2" attrs="{'invisible': [('pay_now', '=', 'pay_later')]}"/>
+                            <field name="reference"/>
+                            <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date" string="Bill Date"/>
+                            <field name="date_due" attrs="{'invisible': [('pay_now', '=', 'pay_now')]}"/>
+                            <field name="paid" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="journal_id"
+                                domain="[('type','=','purchase')]"
+                                widget="selection"
+                                groups="account.group_account_user"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Bill Information">
+                            <field name="line_ids">
+                                <tree string="Voucher Lines" editable="bottom">
+                                    <field name="product_id"
+                                        on_change="product_id_change(product_id, parent.partner_id, price_unit, company_id, parent.currency_id, parent.voucher_type)" />
+                                    <field name="name"/>
+                                    <field name="account_id"/>
+                                    <field name="account_analytic_id" domain="[('account_type','=','normal'), ('company_id', '=', parent.company_id)]" groups="analytic.group_analytic_accounting"/>
+                                    <field name="quantity"/>
+                                    <field name="price_unit"/>
+                                    <field name="tax_ids" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]"/>
+                                    <field name="price_subtotal"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="company_id" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="tax_amount"/>
+                                    <field name="tax_correction" attrs="{'invisible': [('tax_amount','=',0)]}"/>
+                                    <field name="amount"/>
+                                </group>
+                                <field name="narration" placeholder="Internal Notes" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page string="Journal Items" attrs="{'invisible': [('state','!=','posted')]}" groups="base.group_no_one">
+                            <group col="4">
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="move_id" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+		
+           <menuitem id="account_voucher.menu_action_purchase_receipt" name = "Cash Receipts"
+            action="custom_action_purchase_receipt" parent="account.menu_finance_payables" sequence="4"/>
+        </data>
+</openerp>

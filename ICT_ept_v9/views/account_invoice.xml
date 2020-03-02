@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_account_invoice_form_inherit_ict">
+            <field name="name">account.invoice.form.inherits.ict</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+               
+
+                    <xpath expr="//field[@name='origin']" position="after">
+                
+                    <field name="ict_id" attrs="{'invisible':[('ict_id','=',False)]}"></field>
+                    <field name="invoice_id" attrs="{'invisible':[('invoice_id','=',False)]}"></field>
+                    <field name="bill_id" attrs="{'invisible':[('bill_id','=',False)]}"></field>
+
+                    </xpath>
+                
+                
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="view_account_invoice_form_inherit_ict_customer">
+            <field name="name">account.invoice.customer.inherits.ict</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+               
+
+                    <xpath expr="//field[@name='reference']" position="after">
+                
+                    <field name="ict_id" attrs="{'invisible':[('ict_id','=',False)]}"></field>
+                    <field name="invoice_id" attrs="{'invisible':[('invoice_id','=',False)]}"></field>
+                    <field name="bill_id" attrs="{'invisible':[('bill_id','=',False)]}"></field>
+
+                    </xpath>
+                
+                
+            </field>
+        </record>
+        </data>
+</odoo>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+	 	<record id="intercompany_transaction_action" model="ir.actions.act_window">
+	        <field name="name">Intercompany Transaction</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">inter.company.transfer.ept</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	    </record>
+	    
+	   <record id="intercompany_transaction_config_action" model="ir.actions.act_window">
+	        <field name="name">Configuration</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">inter.company.transfer.config</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	    </record>
+        
+        
+           
+        <record id="intercompany_tree_view_ept" model="ir.ui.view">
+		    <field name="name">Intercompany Transaction</field>
+		    <field name="model">inter.company.transfer.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+	            <tree string="Intercompany Transaction">
+	            	<field name="name"/>
+	            	<field name="source_warehouse_id"/>
+	            	<field name="destination_warehouse_id"/>
+	            	<field name="create_date"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="intercompany_config_form_view_ept" model="ir.ui.view">
+		    <field name="name">Intercompany Config</field>
+		    <field name="model">inter.company.transfer.config</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+	            <form string="Intercompany Configuration" create="false">
+	                <group string="ICT Configuration">
+	                <field name="sequence_id"/>
+	            	<field name="auto_confirm_orders"/>
+	            	<!-- <field name="auto_create_invoices"/> -->
+	            	<!-- <field name="auto_validate_invoices" attrs="{'invisible':[('auto_create_invoices','=',False)]}"/> -->
+	            	<field name="auto_validate_invoices"/>
+					</group>
+					<group string="Reverse ICT Configuration">
+						<field name="auto_validate_refunds"/>
+					</group>
+				</form>
+			</field>
+		</record>
+		
+		<record id="intercompany_config_tree_view_ept" model="ir.ui.view">
+		    <field name="name">Intercompany Config</field>
+		    <field name="model">inter.company.transfer.config</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+	            <tree string="Intercompany Configuration" create="false">
+	                <field name="sequence_id"/>
+	            	<field name="auto_confirm_orders"/>
+	            	<field name="auto_create_invoices"/>
+	            	<field name="auto_validate_invoices" attrs="{'invisible':[('auto_create_invoices','=',False)]}"/>
+				</tree>
+			</field>
+		</record>
+		
+	<record id="intercompany_form_view_ept" model="ir.ui.view">
+		<field name="name">Intercompany Transaction</field>
+	    <field name="model">inter.company.transfer.ept</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="Intercompany Transaction">
+			<header>
+				<button string="Process" type="object" name="validate_data" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
+				<button string="Reverse ICT" type="object" name="create_reverse_ict" class="oe_highlight" attrs="{'invisible':[('state','!=','processed')]}"/>
+				<button string="Cancel" type="object" name="action_cancel" attrs="{'invisible':[('state','in',['processed','cancel'])]}"/>
+				<field name="state" widget="statusbar"/>
+			</header>
+			<sheet>
+			 
+           <div class="oe_button_box" name="button_box">
+			
+	
+			<button type="object" name="open_attached_sale_order" attrs="{'invisible':[('state', '!=', 'processed')]}" class="oe_stat_button" icon="fa-chain">
+				<field name="sale_order_id"  string="Sale Order" readonly="1"/>
+			</button>
+			
+			<button type="object" name="open_attached_reverse_ict"  class="oe_stat_button" attrs="{'invisible':[('revesrse_ict_ids', '=', False)]}" icon="fa-chain" string="Reverse ICT">
+				<field name="revesrse_ict_ids"  string="Reverse ICT" invisible="1"/>
+			</button>
+			
+			<button type="object" name="open_attached_purchase_order" attrs="{'invisible':[('state', '!=', 'processed')]}" class="oe_stat_button" icon="fa-chain">
+				<field name="purchase_order_id" string="Purchase Order" readonly="1" />
+			</button>
+			
+			<button type="object" name="open_attached_invoice" attrs="{'invisible':[('customer_invoice_id', '=', False)]}" class="oe_stat_button" icon="fa-chain">
+				<field name="customer_invoice_id"  string="Invoice" readonly="1"/>
+			</button>
+			
+			<button type="object" name="open_attached_bill" attrs="{'invisible':[('vendor_bill_id', '=', False)]}" class="oe_stat_button" icon="fa-chain">
+				<field name="vendor_bill_id"  string="Bill" readonly="1"/>
+			</button>
+			
+			</div>
+			<div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+              </div>
+				<group string="Transaction Info">
+					
+					<group>
+						<field name="source_warehouse_id"/>
+						<field name="source_company_id"/>
+					</group>
+					<group>
+						<field name="destination_warehouse_id"/>
+						<field name="destination_company_id"/>
+					</group>
+				</group>
+				<group string="General Info">
+					<group>
+						<field name="price_list_id"/>
+						<field name="currency_id" readonly="1"/>
+						<field name="crm_team_id"/>
+					</group>
+					<group>
+						<field name="create_date" readonly="1"/>
+						<field name="processed_date" readonly="1"/>
+					</group>
+					
+				</group>
+				<group string="Message" colspan="4">
+					<field name="message" nolabel="1" readonly="1">
+					</field>
+				</group>
+				<group string="Products" colspan="4">
+					<field name="line_ids" nolabel="1">
+						<tree editable="top">
+							<field name="product_id"/>
+							<field name="quantity"/>
+							<field name="price"/>
+						</tree>
+					</field>
+				</group>		
+				<div class="oe_chatter">
+                   <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                   <field name="message_ids" widget="mail_thread"/>
+              	</div>
+			</sheet>
+			</form>
+		</field>
+	</record> 
+	
+	
+	<!-- Reverse ICT -->
+	
+	<record id="reverse_inter_company_form_view_ept" model="ir.ui.view">
+		    <field name="name">Reverse ICT</field>
+		    <field name="model">reverse.inter.company.transfer.ept</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+	            <form string="Reverse Intercompany Transaction">
+		            <header>
+						<button string="Process" type="object" name="process_reverse_ict" class="oe_highlight" attrs="{'invisible':[('state','!=','draft')]}"/>
+						<!-- <button string="Create Supplier Refund" type="object" name="" class="oe_highlight" attrs="{'invisible':[('state','!=','processed')]}"/>
+						<button string="Create Customer Refund" type="object" name="" class="oe_highlight" attrs="{'invisible':[('state','!=','processed')]}"/>-->
+						<button string="Cancel" type="object" name="action_cancel" attrs="{'invisible':[('state','in',['processed','cancel'])]}"/>
+						<field name="state" widget="statusbar"/>
+					</header>
+	                <group string="ICT Information">
+	                	<field name="ict_id"/>
+	                </group>
+	                
+	                <group colspan="2" string ="Picking information">
+		                <field name="reverse_delivery_order_id"/>
+		                <field name="reverse_incoming_shipment_id"/>
+		            </group>
+		            <group colspan="2" string ="Invoice information">
+		                <field name="refund_customer_invoice_id"/>
+		                <field name="refund_vendor_bill_id"/>
+		            </group>
+		            <group string="Reverse Line Information">
+		                <field name="line_ids" nolabel="1">
+		                	<tree>
+								<field name="product_id"/>
+								<field name="quantity"/>
+								<field name="price" />
+							</tree>
+		                </field>
+					</group>
+				</form>
+			</field>
+	</record>
+		
+	<record id="reverse_inter_company_tree_view_ept" model="ir.ui.view">
+		    <field name="name">Reverse ICT</field>
+		    <field name="model">reverse.inter.company.transfer.ept</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+	            <tree string="Reverse ICT" default_order="name desc">
+	            	<field name="name"/>
+	                <field name="ict_id"/>
+				</tree>
+			</field>
+	</record>
+		
+	<record id="reverse_inter_company_transaction_action" model="ir.actions.act_window">
+	        <field name="name">Reverse ICT</field>
+	        <field name="type">ir.actions.act_window</field>
+	        <field name="res_model">reverse.inter.company.transfer.ept</field>
+	        <field name="view_type">form</field>
+	        <field name="view_mode">tree,form</field>
+	    </record>
+		
+   <menuitem id="menu_intercompany_transaction"
+        parent="stock.menu_stock_root" name="Intercompany" sequence="5"/>
+        
+  <menuitem
+        action="intercompany_transaction_action" id="menu_intercompany_record"
+        parent="menu_intercompany_transaction"/>
+        
+  <menuitem
+        action="reverse_inter_company_transaction_action" id="menu_reverse_inter_company_record"
+        parent="menu_intercompany_transaction"/>
+        
+    <menuitem
+        action="intercompany_transaction_config_action" id="menu_intercompany_config_record"
+        parent="menu_intercompany_transaction"/>
+		</data>
+</openerp>

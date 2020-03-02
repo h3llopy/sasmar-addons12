@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+<!-- 
+       <record id="operation_stock_lot_view_inherit_ept" model="ir.ui.view">
+			<field name="name">stock.pack.operation.lot.form</field>
+			<field name="model">stock.pack.operation.lot</field>
+			<field name="inherit_id" ref="stock.view_pack_operation_lot_lot_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='lot_id']" position="replace">
+					<field name="lot_id" string="Lot Number" />
+				</xpath>
+				<xpath expr="//field[@name='lot_id']" position="after">
+					<field name="expiry_date" />
+				</xpath>
+			</field>
+		</record>
+
+
+		<record id="stock_production_lot_view_inherit_ept" model="ir.ui.view">
+			<field name="name">Stock Pack Operation </field>
+			<field name="model">stock.pack.operation</field>
+			<field name="inherit_id" ref="stock.view_pack_operation_lot_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='pack_lot_ids']" position="replace">
+					<field name="pack_lot_ids" nolabel="1"
+						attrs="{'readonly': [('state', '=', 'done')]}">
+						<tree editable="bottom" decoration-success="qty_todo==qty"
+							decoration-danger="(qty_todo &gt; 0) and (qty&gt;qty_todo)">
+							<field name="lot_name" invisible="not context.get('only_create', False)" />
+							<field name="lot_id" invisible="context.get('only_create', False)"
+								domain="[('product_id','=', parent.product_id)]" context="{'product_id': parent.product_id}"
+								string="Lot Number" />
+							<field name="expiry_date" invisible="context.get('picking_type')" />
+							<field name="qty_todo"
+								invisible="not context.get('show_reserved') or context.get('serial') or context.get('state_done')"
+								readonly="1" />
+							<field name="qty" invisible="context.get('serial')" />
+							<button name="do_minus" type="object" icon="fa-minus-square"
+								attrs="{'invisible': [('qty', '&lt;=', 0.99)]}"
+								invisible="not context.get('show_reserved') or context.get('state_done')" />
+							<button name="do_plus" type="object" icon="fa-plus-square"
+								attrs="{'invisible': [('plus_visible', '=', False)]}"
+								invisible="not context.get('show_reserved') or context.get('state_done')" />
+							<field name="plus_visible" invisible="1" />
+						</tree>
+					</field>
+				</xpath>
+			</field>
+		</record> -->
+	</data>
+</openerp>
+
+	

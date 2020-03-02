@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+website_product_rating_review_visitor_user,website_product_rating_review_visitor_user_name,website_product_rating.model_reviews_ratings,,1,0,0,0

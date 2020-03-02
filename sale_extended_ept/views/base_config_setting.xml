@@ -1,0 +1,27 @@
+<openerp>
+    <data>
+        <record id="view_general_configuration_reply_from_email" model="ir.ui.view">
+            <field name="name">view.general.configuration.reply.from.email</field>
+            <field name="model">base.config.settings</field>
+            <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='email']" position='inside'>
+                    <div>
+                        <label for="reply_from_email" class="oe_inline"/>
+                        <field name="reply_from_email" class="oe_inline"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+		
+
+    <data noupdate="1">
+    	<record id="reply_email_address_id" model="ir.config_parameter">
+        	<field name="key">reply.from.email</field>
+            <field name="value">''</field>
+        </record>
+    </data>
+
+</openerp>
+

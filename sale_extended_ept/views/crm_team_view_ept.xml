@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+        <record model="ir.ui.view" id="sasmar_custom_sales_team_view_ept">
+			<field name="name">crm.team.form</field>
+			<field name="model">crm.team</field>
+			<field name="inherit_id" ref="sales_team.crm_team_view_form" />
+			<field name="arch" type="xml">
+				<field name="team_type" position="after">
+					<field name="parent_id" />
+				</field>
+			</field>
+		</record>
+		
+	</data>
+</openerp>

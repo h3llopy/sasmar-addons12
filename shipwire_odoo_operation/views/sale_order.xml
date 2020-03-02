@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="is_shipwire_order_boolean_form_view_ept">
+            <field name="name">sale.order.shipwire</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority">60</field>
+            <field name="arch" type="xml">
+            <field name="state" position="before">
+            	<button name="post_single_order" string="Export to Shipwire"
+            		type="object" class="btn-primary" attrs="{'invisible':['|','|','&amp;',('shipwire_id','!=',0),('is_shipwire','=',True),('is_shipwire','=',False),('state','!=','sale')]}"/>
+            </field>
+	                <field name="warehouse_id" position="after">
+	                	<field name="is_shipwire"/>
+	                	<field name="shipwire_id" readonly="1"/>
+	                </field>
+			</field>
+    	</record>
+	</data>
+</openerp>
