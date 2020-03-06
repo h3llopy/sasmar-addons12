@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_shipwire_instance_user,shipwire.instance.user,model_shipwire_instance,shipwire_odoo_operation.group_shipwire_user_ept,1,0,0,0
-access_shipwire_instance_manager,shipwire.instance.manager,model_shipwire_instance,shipwire_odoo_operation.group_shipwire_manager_ept,1,1,0,0

@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_shipwire_stages_all,shipwire.stages Manager,model_shipwire_stages,shipwire_odoo_operation.group_shipwire_user_ept,1,1,1,1
-single_ict_invoice_wizard_manager,single.ict.invoice.wizard.manager,model_single_ict_invoice_wizard,ICT_ept_v9.group_ict_manager,1,1,1,1
-single_ict_invoice_wizard_user,single.ict.invoice.wizard.user,model_single_ict_invoice_wizard,ICT_ept_v9.group_ict_user,1,1,1,0
-single_ict_refund_wizard_manager,single.ict.refund.wizard.manager,model_single_ict_refund_wizard,ICT_ept_v9.group_ict_manager,1,1,1,1
-single_ict_refund_wizard_user,single.ict.refund.wizard.user,model_single_ict_refund_wizard,ICT_ept_v9.group_ict_user,1,1,1,0
-
-
-access_shipwire_tracking_user,shipwire.tracking.user,model_shipwire_tracking,ICT_ept_v9.group_ict_user,1,1,1,0

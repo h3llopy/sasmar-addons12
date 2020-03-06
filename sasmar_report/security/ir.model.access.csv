@@ -1,6 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_invoice_refund,account_invoice_refund,account.model_account_invoice_refund,,1,1,1,0
-access_ship_sale,ship_sale,model_ship_via,sales_team.group_sale_salesman,1,1,1,1
-access_ship_via_lead,ship_via_lead,model_ship_via,sales_team.group_sale_salesman_all_leads,1,1,1,0
-access_ship_via_manager,ship_via_manager,model_ship_via,sales_team.group_sale_manager,1,1,1,0
-access_account_invoice_refund_account,model_account_invoice_refund_user,account.model_account_invoice_refund,account.group_account_invoice,1,1,1,1
